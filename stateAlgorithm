@@ -1,0 +1,33 @@
+State 0: Pure A princess
+    Options:
+    hybridize with Pure B
+    combine with hybrid
+    best hybridizers: distance to target and has b gene (worse than pure condition)
+
+State 1: Target Gene lost, bad genes still in
+    return to state 0 by breeding with pure A's
+
+State 2: Has target gene, but also still others
+    Options:
+    1. stabilize with pure A
+    2. mix with other hybrids
+
+    test options for speed (prefer 1)
+    
+
+Gene:
+    Spezies                 
+    Effekt
+    Terretorium / Gebiet
+    Lebensdauer
+    Blume
+    Fruchbarkeit
+    Geschwindigkeit
+    Bestäubung (Bäume)
+
+    Feuchtigkeit
+    Klima (Temperatur)
+    Tagaktiv
+    Nachtaktiv
+    Regen (Flieger)
+    Höhle
