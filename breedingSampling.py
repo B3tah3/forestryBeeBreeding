@@ -1,6 +1,7 @@
 import random
 import math
-numberOfGenes = 5
+numberOfGenes = 3
+fertility = 4
 
 class Bee:
     def __init__(self, gene, amount = 1):
@@ -115,33 +116,22 @@ def simulate_quality_breeding():
 
         new_queen = breed(queen, chosen_drone)
         #print(f"New queen: {new_queen}")
-        new_drone1 = breed(queen, chosen_drone)
-        #print(f"New drone: {new_drone1}")
-        new_drone2 = breed(queen, chosen_drone)
-        #print(f"New drone: {new_drone2}")
-        queen = new_queen
-        
+
+        for f in range(fertility):
+            new_drone = breed(queen, chosen_drone)
+            if new_drone in population:
+                for bee in population:
+                    if bee == new_drone:
+                        bee.amount += 1
+                        break
+            else:
+                population.add(new_drone)
+
         #decrease one from the count of the best drone
         chosen_drone.amount -= 1
         if chosen_drone.amount <= 0:
             population.remove(chosen_drone)
-        #add the new drones to the population
-        if new_drone1 in population:
-            for bee in population:
-                if bee == new_drone1:
-                    bee.amount += 1
-                    break
-        else:
-            population.add(new_drone1)
-
-        if new_drone2 in population:
-            for bee in population:
-                if bee == new_drone2:
-                    bee.amount += 1
-                    break
-            
-        else:
-            population.add(new_drone2)
+        queen = new_queen
     return 1000
         
 def test():
