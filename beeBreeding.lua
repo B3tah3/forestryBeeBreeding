@@ -1,6 +1,7 @@
 IO = require("io")
 sides = require("sides")
 component = require("component")
+climate = require("climate")
 
 print("Component: ",component)
 print("Sides: ",sides)
@@ -73,7 +74,8 @@ function HasPrincessAllTargetA(bee)
     return true
 end
 
-function MeasureDroneDistanceToTarget(bee) Distance = 0
+function MeasureDroneDistanceToTarget(bee)
+    Distance = 0
     for k, v in pairs(TargetTraitsA) do
         if not DeepEquals(v, bee.individual.active[k]) then
             Distance = Distance + 1
@@ -93,14 +95,12 @@ function MeasureDroneDistanceToTarget(bee) Distance = 0
     return Distance
 end
 
-function Main()
-    print("Forestry Bee Breeding\n-------------------------------\n ©B3tah3 , XI_Wizzard\n")
+function Iterate()
     BeeChest = component.transposer.getAllStacks(sides.west).getAll()
     Princess = nil
 
     --loop over every inventory slot and check if the individual is missing B Target Genes --TODO trash drones
     for i=0,26 do
-        print("BeeChest[i]:", BeeChest[i], "[", i, "]")
         bee = BeeChest[i]
         if bee.individual then
             if bee.individual.active and bee.individual.inactive then
@@ -110,20 +110,20 @@ function Main()
             if not Princess and bee.name == "Forestry:beePrincessGE" then
                 Princess = bee
                 --move slot i to output
-                print("Args:", sides.west,sides.top, 1,i+1, 1)
+                print("Args:", sides.west, sides.top, 1, i + 1, 1)
+                climate.setHumidity(Princess)
+                climate.setTemperature(Princess)
                 result = component.transposer.transferItem(sides.west,sides.top, 1,i+1, 1)
                 print("[DEBUG]:    Moved Princess", result)
             end
         end
     end
     if Princess then
-        
-        if HasPrincessAllTargetA(Princess)then
+        if HasPrincessAllTargetA(Princess) then
             --choose best drone
             BestDroneIndex = 0
             BestDistance = 999
             for i = 0, 26 do
-
                 if BeeChest[i] and BeeChest[i].name == "Forestry:beeDroneGE" then
                     local bee = BeeChest[i]
                     if bee.individual and bee.individual.active and bee.individual.inactive then
@@ -140,20 +140,32 @@ function Main()
                 PrincessDistance = MeasureDroneDistanceToTarget(Princess)
                 if PrincessDistance == 0 then
                     print("Breeding Done")
-                    return 1
+                    return false
                 end
             end
-            print("Args:", sides.west,sides.top, 1,BestDroneIndex+1, 2)
-                result = component.transposer.transferItem(sides.west,sides.top, 1,BestDroneIndex+1, 2)
-                print("[DEBUG]:    Moved Drone", result)
-
+            print("Args:", sides.west, sides.top, 1, BestDroneIndex + 1, 2)
+            result = component.transposer.transferItem(sides.west, sides.top, 1, BestDroneIndex + 1, 2)
+            print("[DEBUG]:    Moved Drone", result)
         else
             --choose pure A drone
             --move pure a drone to output chest
             print("Args", sides.south, sides.top, 1, 1, 2)
-            result = component.transposer.transferItem(sides.south,sides.top, 1,3, 2)
-            print("[DEBUG]:    Moved Fallback Drone" , result)
+            result = component.transposer.transferItem(sides.south, sides.top, 1, 3, 2)
+            print("[DEBUG]:    Moved Fallback Drone", result)
         end
+    end
+    return true
+end
+
+function Main()
+    print("Forestry Bee Breeding\n-------------------------------\n ©B3tah3 , XI_Wizzard\n")
+    iterate = true
+    i = 0
+    while iterate do
+        print("Iteration: ",i)
+        print("---------------------------------")
+        iterate = Iterate()
+        os.sleep(25)
     end
 end
 --[[
