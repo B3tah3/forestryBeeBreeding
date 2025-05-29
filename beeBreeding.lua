@@ -136,6 +136,13 @@ function Main()
                 end
             end
             --move chosen drone to output chest
+            if BestDistance == 0 then
+                PrincessDistance = MeasureDroneDistanceToTarget(Princess)
+                if PrincessDistance == 0 then
+                    print("Breeding Done")
+                    return 1
+                end
+            end
             print("Args:", sides.west,sides.top, 1,BestDroneIndex+1, 2)
                 result = component.transposer.transferItem(sides.west,sides.top, 1,BestDroneIndex+1, 2)
                 print("[DEBUG]:    Moved Drone", result)
