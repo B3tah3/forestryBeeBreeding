@@ -31,3 +31,17 @@ Gene:
     Nachtaktiv
     Regen (Flieger)
     Höhle
+
+Gene Individual Data Format
+    effect
+    territory
+    species
+    flowering
+    lifespan
+    temperatureTolerance
+    fertility
+    humidityTolerance
+    speed
+    tolerantFlyer
+    flowerProvider
+    caveDwelling
