@@ -2,6 +2,10 @@ IO = require("io")
 sides = require("sides")
 component = require("component")
 
+print("Component: ",component)
+print("Sides: ",sides)
+print("West: ",sides.west)
+
 --tasks for setup
 -- read princess, drones a and b, read target (from arguments?)
 --tasks for one breeding cycle:
@@ -50,7 +54,7 @@ end
 function IsDroneMissingBTrait(bee)
     --check if bee b is missing any traits from target in both active and inactive states
     for k, v in pairs(TargetTraitsB) do
-        if not DeepEquals(v, bee.active[k]) and not DeepEquals(v, bee.inactive[k]) then
+        if not DeepEquals(v, bee.individual.active[k]) and not DeepEquals(v, bee.individual.inactive[k]) then
             return true
         end
     end
@@ -62,28 +66,27 @@ end
 --princs(A,A,A,B,A) fails
 function HasPrincessAllTargetA(bee)
     for k, v in pairs(TargetTraitsA) do
-        if not DeepEquals(v, bee.active[k]) or not DeepEquals(v, bee.inactive[k]) then
+        if not DeepEquals(v, bee.individual.active[k]) or not DeepEquals(v, bee.individual.inactive[k]) then
             return false
         end
     end
     return true
 end
 
-function MeasureDroneDistanceToTarget(bee)
-    Distance = 0
+function MeasureDroneDistanceToTarget(bee) Distance = 0
     for k, v in pairs(TargetTraitsA) do
-        if not DeepEquals(v, bee.active[k]) then
+        if not DeepEquals(v, bee.individual.active[k]) then
             Distance = Distance + 1
         end
-        if not DeepEquals(v, bee.inactive[k]) then
+        if not DeepEquals(v, bee.individual.inactive[k]) then
             Distance = Distance + 1
         end
     end
     for k, v in pairs(TargetTraitsB) do
-        if not DeepEquals(v, bee.active[k]) then
+        if not DeepEquals(v, bee.individual.active[k]) then
             Distance = Distance + 1
         end
-        if not DeepEquals(v, bee.inactive[k]) then
+        if not DeepEquals(v, bee.individual.inactive[k]) then
             Distance = Distance + 1
         end
     end
@@ -91,24 +94,25 @@ function MeasureDroneDistanceToTarget(bee)
 end
 
 function Main()
-    print("hello")
-    BeeChest = component.transposer.getAllStacks(sides.south)
+    print("Forestry Bee Breeding\n-------------------------------\n ©B3tah3 , XI_Wizzard\n")
+    BeeChest = component.transposer.getAllStacks(sides.west).getAll()
     Princess = nil
-    
+
     --loop over every inventory slot and check if the individual is missing B Target Genes --TODO trash drones
     for i=0,26 do
-        if BeeChest[i] then
-            local bee = BeeChest[i]
-
-            if bee.individual and bee.individual.active and bee.individual.inactive then
-                print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee.individual)))
+        print("BeeChest[i]:", BeeChest[i], "[", i, "]")
+        bee = BeeChest[i]
+        if bee.individual then
+            if bee.individual.active and bee.individual.inactive then
+                print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee)))
             end
             --identify and save princess data, move to output
-            if not Princess and bee.individual.name ~= "Forestry:beeDroneGE" then
+            if not Princess and bee.name == "Forestry:beePrincessGE" then
                 Princess = bee
                 --move slot i to output
-                component.transposer.transferItem(sides.west, i, sides.top, 1)
-                print("[DEBUG]:    Moved Princess")
+                print("Args:", sides.west,sides.top, 1,i+1, 1)
+                result = component.transposer.transferItem(sides.west,sides.top, 1,i+1, 1)
+                print("[DEBUG]:    Moved Princess", result)
             end
         end
     end
@@ -118,8 +122,9 @@ function Main()
             --choose best drone
             BestDroneIndex = 0
             BestDistance = 999
-            for i=0,26 do
-                if BeeChest[i] then
+            for i = 0, 26 do
+
+                if BeeChest[i] and BeeChest[i].name == "Forestry:beeDroneGE" then
                     local bee = BeeChest[i]
                     if bee.individual and bee.individual.active and bee.individual.inactive then
                         DistanceToTarget = MeasureDroneDistanceToTarget(bee)
@@ -131,12 +136,16 @@ function Main()
                 end
             end
             --move chosen drone to output chest
-            component.transposer.transferItem(sides.west , BestDroneIndex , sides.top , 2 )
-                print("[DEBUG]:    Moved Drone")
+            print("Args:", sides.west,sides.top, 1,BestDroneIndex+1, 2)
+                result = component.transposer.transferItem(sides.west,sides.top, 1,BestDroneIndex+1, 2)
+                print("[DEBUG]:    Moved Drone", result)
 
         else
             --choose pure A drone
             --move pure a drone to output chest
+            print("Args", sides.south, sides.top, 1, 1, 2)
+            result = component.transposer.transferItem(sides.south,sides.top, 1,3, 2)
+            print("[DEBUG]:    Moved Fallback Drone" , result)
         end
     end
 end
