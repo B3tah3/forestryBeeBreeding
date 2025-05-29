@@ -100,8 +100,7 @@ function Iterate()
     Princess = nil
 
     --loop over every inventory slot and check if the individual is missing B Target Genes --TODO trash drones
-    for i=0,26 do
-        bee = BeeChest[i]
+    for i , bee in pairs(BeeChest) do
         if bee.individual then
             if bee.individual.active and bee.individual.inactive then
                 print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee)))
