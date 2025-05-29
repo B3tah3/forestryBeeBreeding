@@ -37,7 +37,7 @@ function climate.setTemperature(bee)
     local t = {
         Icy = function(redstone)
             redstone.setOutput(hotSide, 0)
-            redstone.setOutput(coldSide, 4)
+            redstone.setOutput(coldSide, 2)
             print("Icy")
         end,
         Cold = function(redstone)
@@ -47,8 +47,8 @@ function climate.setTemperature(bee)
         end,
 
         Warm = function(redstone)
-            redstone.setOutput(hotSide, 0)
-            redstone.setOutput(coldSide, 1)
+            redstone.setOutput(coldSide, 0)
+            redstone.setOutput(hotSide, 1)
             print("Warm")
         end,
 
