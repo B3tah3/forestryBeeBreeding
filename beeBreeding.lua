@@ -1,5 +1,6 @@
 IO = require("io")
 sides = require("sides")
+component = require("component")
 
 --tasks for setup
 -- read princess, drones a and b, read target (from arguments?)
@@ -106,6 +107,8 @@ function Main()
             if not Princess and bee.individual.name ~= "Forestry:beeDroneGE" then
                 Princess = bee
                 --move slot i to output
+                component.transposer.transferItem(sides.west, i, sides.top, 1)
+                print("[DEBUG]:    Moved Princess")
             end
         end
     end
@@ -128,6 +131,9 @@ function Main()
                 end
             end
             --move chosen drone to output chest
+            component.transposer.transferItem(sides.west , BestDroneIndex , sides.top , 2 )
+                print("[DEBUG]:    Moved Drone")
+
         else
             --choose pure A drone
             --move pure a drone to output chest
