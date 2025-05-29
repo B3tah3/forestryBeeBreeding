@@ -164,6 +164,7 @@ function Main()
     while iterate do
         print("Iteration: ",i)
         print("---------------------------------")
+        i = i+1
         iterate = Iterate()
         os.sleep(25)
     end

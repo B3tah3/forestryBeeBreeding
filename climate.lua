@@ -4,8 +4,8 @@ c = require("component")
 sides = require("sides")
 wetSide = sides.south
 drySide = sides.north
-hotSide = sides.west
-coldSide = sides.east
+hotSide = sides.east
+coldSide = sides.west
 
 function climate.defaultBee()
     return c.transposer.getStackInSlot(sides.west, 1)
@@ -47,8 +47,8 @@ function climate.setTemperature(bee)
         end,
 
         Warm = function(redstone)
-            redstone.setOutput(hotSide, 0)
-            redstone.setOutput(coldSide, 1)
+            redstone.setOutput(coldSide, 0)
+            redstone.setOutput(hotSide, 1)
             print("Warm")
         end,
 
