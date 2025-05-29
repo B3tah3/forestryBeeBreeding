@@ -1,0 +1,193 @@
+Genes: 1 / 1 | Fertility: 2
+Average generations to target: 14.02, Median generations: 13
+Genes: 1 / 1 | Fertility: 3
+Average generations to target: 9.33, Median generations: 9
+Genes: 1 / 1 | Fertility: 4
+Average generations to target: 8.51, Median generations: 8
+Genes: 1 / 2 | Fertility: 2
+Average generations to target: 13.59, Median generations: 12
+Genes: 1 / 2 | Fertility: 3
+Average generations to target: 11.11, Median generations: 10
+Genes: 1 / 2 | Fertility: 4
+Average generations to target: 10.61, Median generations: 11
+Genes: 1 / 3 | Fertility: 2
+Average generations to target: 14.17, Median generations: 13
+Genes: 1 / 3 | Fertility: 3
+Average generations to target: 10.92, Median generations: 9
+Genes: 1 / 3 | Fertility: 4
+Average generations to target: 10.31, Median generations: 10
+Genes: 1 / 4 | Fertility: 2
+Average generations to target: 16.32, Median generations: 15
+Genes: 1 / 4 | Fertility: 3
+Average generations to target: 13.29, Median generations: 13
+Genes: 1 / 4 | Fertility: 4
+Average generations to target: 11.68, Median generations: 11
+Genes: 1 / 5 | Fertility: 2
+Average generations to target: 16.29, Median generations: 15
+Genes: 1 / 5 | Fertility: 3
+Average generations to target: 13.71, Median generations: 13
+Genes: 1 / 5 | Fertility: 4
+Average generations to target: 12.77, Median generations: 12
+Genes: 1 / 6 | Fertility: 2
+Average generations to target: 18.3, Median generations: 18
+Genes: 1 / 6 | Fertility: 3
+Average generations to target: 14.37, Median generations: 14
+Genes: 1 / 6 | Fertility: 4
+Average generations to target: 13.71, Median generations: 13
+Genes: 1 / 7 | Fertility: 2
+Average generations to target: 19.82, Median generations: 19
+Genes: 1 / 7 | Fertility: 3
+Average generations to target: 15.13, Median generations: 14
+Genes: 1 / 7 | Fertility: 4
+Average generations to target: 13.49, Median generations: 13
+Genes: 1 / 8 | Fertility: 2
+Average generations to target: 19.01, Median generations: 17
+Genes: 1 / 8 | Fertility: 3
+Average generations to target: 15.22, Median generations: 14
+Genes: 1 / 8 | Fertility: 4
+Average generations to target: 13.47, Median generations: 13
+Genes: 1 / 9 | Fertility: 2
+Average generations to target: 20.52, Median generations: 19
+Genes: 1 / 9 | Fertility: 3
+Average generations to target: 16.4, Median generations: 16
+Genes: 1 / 9 | Fertility: 4
+Average generations to target: 14.92, Median generations: 14
+Genes: 1 / 10 | Fertility: 2
+Average generations to target: 21.33, Median generations: 20
+Genes: 1 / 10 | Fertility: 3
+Average generations to target: 17.44, Median generations: 17
+Genes: 1 / 10 | Fertility: 4
+Average generations to target: 15.15, Median generations: 15
+Genes: 1 / 11 | Fertility: 2
+Average generations to target: 20.33, Median generations: 19
+Genes: 1 / 11 | Fertility: 3
+Average generations to target: 16.48, Median generations: 16
+Genes: 1 / 11 | Fertility: 4
+Average generations to target: 15.12, Median generations: 14
+Genes: 1 / 12 | Fertility: 2
+Average generations to target: 23.7, Median generations: 22
+Genes: 1 / 12 | Fertility: 3
+Average generations to target: 17.94, Median generations: 18
+Genes: 1 / 12 | Fertility: 4
+Average generations to target: 16.04, Median generations: 16
+Genes: 1 / 13 | Fertility: 2
+Average generations to target: 23.38, Median generations: 20
+Genes: 1 / 13 | Fertility: 3
+Average generations to target: 17.64, Median generations: 16
+Genes: 1 / 13 | Fertility: 4
+Average generations to target: 15.41, Median generations: 15
+Genes: 1 / 14 | Fertility: 2
+Average generations to target: 22.64, Median generations: 21
+Genes: 1 / 14 | Fertility: 3
+Average generations to target: 18.76, Median generations: 18
+Genes: 1 / 14 | Fertility: 4
+Average generations to target: 16.46, Median generations: 16
+Genes: 1 / 15 | Fertility: 2
+Average generations to target: 25.33, Median generations: 23
+Genes: 1 / 15 | Fertility: 3
+Average generations to target: 18.28, Median generations: 18
+Genes: 1 / 15 | Fertility: 4
+Average generations to target: 16.52, Median generations: 17
+Genes: 2 / 2 | Fertility: 2
+Average generations to target: 79.22, Median generations: 60
+Genes: 2 / 2 | Fertility: 3
+Average generations to target: 49.1, Median generations: 38
+Genes: 2 / 2 | Fertility: 4
+Average generations to target: 32.57, Median generations: 28
+Genes: 2 / 3 | Fertility: 2
+Average generations to target: 116.4, Median generations: 86
+Genes: 2 / 3 | Fertility: 3
+Average generations to target: 48.8, Median generations: 44
+Genes: 2 / 3 | Fertility: 4
+Average generations to target: 39.77, Median generations: 32
+Genes: 2 / 4 | Fertility: 2
+Average generations to target: 133.37, Median generations: 102
+Genes: 2 / 4 | Fertility: 3
+Average generations to target: 51.09, Median generations: 46
+Genes: 2 / 4 | Fertility: 4
+Average generations to target: 35.69, Median generations: 30
+Genes: 2 / 5 | Fertility: 2
+Average generations to target: 130.28, Median generations: 94
+Genes: 2 / 5 | Fertility: 3
+Average generations to target: 58.14, Median generations: 52
+Genes: 2 / 5 | Fertility: 4
+Average generations to target: 41.37, Median generations: 38
+Genes: 2 / 6 | Fertility: 2
+Average generations to target: 159.75, Median generations: 114
+Genes: 2 / 6 | Fertility: 3
+Average generations to target: 59.79, Median generations: 48
+Genes: 2 / 6 | Fertility: 4
+Average generations to target: 43.17, Median generations: 37
+Genes: 2 / 7 | Fertility: 2
+Average generations to target: 170.31, Median generations: 139
+Genes: 2 / 7 | Fertility: 3
+Average generations to target: 57.64, Median generations: 52
+Genes: 2 / 7 | Fertility: 4
+Average generations to target: 40.8, Median generations: 37
+Genes: 2 / 8 | Fertility: 2
+Average generations to target: 199.67, Median generations: 135
+Genes: 2 / 8 | Fertility: 3
+Average generations to target: 63.02, Median generations: 56
+Genes: 2 / 8 | Fertility: 4
+Average generations to target: 44.05, Median generations: 36
+Genes: 2 / 9 | Fertility: 2
+Average generations to target: 195.64, Median generations: 144
+Genes: 2 / 9 | Fertility: 3
+Average generations to target: 65.46, Median generations: 56
+Genes: 2 / 9 | Fertility: 4
+Average generations to target: 43.77, Median generations: 39
+Genes: 2 / 10 | Fertility: 2
+Average generations to target: 288.66, Median generations: 180
+Genes: 2 / 10 | Fertility: 3
+Average generations to target: 74.54, Median generations: 64
+Genes: 2 / 10 | Fertility: 4
+Average generations to target: 51.66, Median generations: 46
+Genes: 2 / 11 | Fertility: 2
+Average generations to target: 208.12, Median generations: 152
+Genes: 2 / 11 | Fertility: 3
+Average generations to target: 74.81, Median generations: 62
+Genes: 2 / 11 | Fertility: 4
+Average generations to target: 46.83, Median generations: 41
+Genes: 2 / 12 | Fertility: 2
+Average generations to target: 223.58, Median generations: 146
+Genes: 2 / 12 | Fertility: 3
+Average generations to target: 73.1, Median generations: 61
+Genes: 2 / 12 | Fertility: 4
+Average generations to target: 45.18, Median generations: 40
+Genes: 2 / 13 | Fertility: 2
+Average generations to target: 275.9, Median generations: 211
+Genes: 2 / 13 | Fertility: 3
+Average generations to target: 84.62, Median generations: 78
+Genes: 2 / 13 | Fertility: 4
+Average generations to target: 51.45, Median generations: 42
+Genes: 2 / 14 | Fertility: 2
+Average generations to target: 269.27, Median generations: 197
+Genes: 2 / 14 | Fertility: 3
+Average generations to target: 82.29, Median generations: 69
+Genes: 2 / 14 | Fertility: 4
+Average generations to target: 46.17, Median generations: 41
+Genes: 2 / 15 | Fertility: 2
+Average generations to target: 259.17, Median generations: 168
+Genes: 2 / 15 | Fertility: 3
+Average generations to target: 87.19, Median generations: 80
+Genes: 2 / 15 | Fertility: 4
+Average generations to target: 54.72, Median generations: 49
+Genes: 3 / 3 | Fertility: 2
+Average generations to target: 1702.7, Median generations: 1344
+Genes: 3 / 3 | Fertility: 3
+Average generations to target: 585.15, Median generations: 440
+Genes: 3 / 3 | Fertility: 4
+Average generations to target: 232.78, Median generations: 183
+Genes: 3 / 4 | Fertility: 2
+Average generations to target: 3226.18, Median generations: 2355
+Genes: 3 / 4 | Fertility: 3
+Average generations to target: 707.82, Median generations: 606
+Genes: 3 / 4 | Fertility: 4
+Average generations to target: 302.15, Median generations: 227
+Genes: 3 / 5 | Fertility: 2
+Average generations to target: 4072.21, Median generations: 2672
+Genes: 3 / 5 | Fertility: 3
+Average generations to target: 965.22, Median generations: 645
+Genes: 3 / 5 | Fertility: 4
+Average generations to target: 356.45, Median generations: 279
+Genes: 3 / 6 | Fertility: 2
