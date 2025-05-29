@@ -26,7 +26,8 @@ print("West: ",sides.west)
 
 -- create a salt drone with flowers
 TargetTraitsA = {flowerProvider="flowersVanilla"}
-TargetTraitsB = {species={temperature="Warm",humidity="Arid",name="Salt",uid="gregtech.bee.speciesSalty"}}
+--TargetTraitsB = {species={temperature="Warm",humidity="Arid",name="Salt",uid="gregtech.bee.speciesSalty"}}
+TargetTraitsB = {species={temperature="Icy",humidity="Arid",name="Naquadah",uid="gregtech.bee.speciesNaquadah"}}
 
 function DeepEquals(a, b, visited)
     if a == b then return true end
