@@ -4,10 +4,10 @@ climate.light = true
 c = require("component")
 sides = require("sides")
 os = require("os")
-wetSide = sides.south
-hotSide = sides.east
-hellishSide = sides.west
-lightSide = sides.north
+wetSide = sides.north
+hotSide = sides.south
+hellishSide = sides.east
+lightSide = sides.west
 
 function climate.defaultBee()
     return c.transposer.getStackInSlot(sides.east, 1)
@@ -44,24 +44,24 @@ function climate.setTemperature(bee)
             redstone.setOutput(hellishSide, 0)
             print("Cold")
         end,
+        Normal = function(redstone)
+            redstone.setOutput(hotSide, 3)
+            redstone.setOutput(hellishSide, 0)
+            print("Normal")
+        end,
 
         Warm = function(redstone)
-            redstone.setOutput(hotSide, 3)
+            redstone.setOutput(hotSide, 4)
             redstone.setOutput(hellishSide, 0)
             print("Warm")
         end,
 
         Hot = function(redstone)
-            redstone.setOutput(hotSide, 4)
+            redstone.setOutput(hotSide, 5)
             redstone.setOutput(hellishSide, 0)
             print("Hot")
         end,
 
-        Normal = function(redstone)
-            redstone.setOutput(hotSide, 5)
-            redstone.setOutput(hellishSide, 0)
-            print("Normal")
-        end,
         Hellish = function(redstone)
             redstone.setOutput(hotSide, 0)
             redstone.setOutput(hellishSide, 2)
@@ -75,6 +75,7 @@ function climate.setLight(bee)
   if (bee.individual.active.nocturnal and climate.light) or (not bee.individual.active.nocturnal and not climate.light)then
     c.redstone.setOutput(lightSide, 10)
     os.sleep(0.5)
+    print("[DEBUG] Changed Light from: " , climate.light , "to: " , not climate.light)
     climate.light = not climate.light
     c.redstone.setOutput(lightSide, 0)
     end

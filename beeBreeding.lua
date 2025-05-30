@@ -5,8 +5,16 @@ climate = require("climate")
 
 print("Component: ",component)
 print("Sides: ",sides)
-print("West: ",sides.west)
+print("West: ", sides.west)
 
+
+alveary = {
+    Storage = sides.east,
+    Alveary = sides.south,
+    Trash = sides.top,
+    Output = sides.north,
+    Input = sides.west
+}
 --tasks for setup
 -- read princess, drones a and b, read target (from arguments?)
 --tasks for one breeding cycle:
@@ -96,31 +104,36 @@ function MeasureDroneDistanceToTarget(bee)
     return Distance
 end
 
-function Iterate()
-    BeeChest = component.transposer.getAllStacks(sides.west).getAll()
+function findPrincessAndTrashDrones(BeeChest)
     Princess = nil
-
-    --loop over every inventory slot and check if the individual is missing B Target Genes --TODO trash drones
     for i , bee in pairs(BeeChest) do
         if bee.individual then
-            if bee.individual.active and bee.individual.inactive then
+            if bee.individual.active and bee.individual.inactive and not (bee.name == "Forestry:beePrincessGE") then
                 print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee)))
+                if IsDroneMissingBTrait(bee) then
+                    component.transposer.transferItem(alveary.Storage , alveary.Trash , 64 , i+1 , 1 )
+                end
             end
-            --identify and save princess data, move to output
             if not Princess and bee.name == "Forestry:beePrincessGE" then
-                Princess = bee
-                --move slot i to output
-                print("Args:", sides.west, sides.top, 1, i + 1, 1)
-                climate.setHumidity(Princess)
-                climate.setTemperature(Princess)
-                climate.setLight(Princess)
-                result = component.transposer.transferItem(sides.west,sides.top, 1,i+1, 1)
-                print("[DEBUG]:    Moved Princess", result)
+                climate.setHumidity(bee)
+                climate.setTemperature(bee)
+                climate.setLight(bee)
+                Princess =  { princess = bee, slot = i + 1 }
             end
         end
     end
-    if Princess then
-        if HasPrincessAllTargetA(Princess) then
+    return Princess
+end
+
+function Iterate()
+    BeeChest = component.transposer.getAllStacks(alveary.Storage).getAll()
+
+    --loop over every inventory slot and check if the individual is missing B Target Genes --TODO trash drones
+    SearchResult = findPrincessAndTrashDrones(BeeChest)
+    if SearchResult then
+        Princess = SearchResult.princess
+        PrincessSlot = SearchResult.slot
+        if Princess and  HasPrincessAllTargetA(Princess) then
             --choose best drone
             BestDroneIndex = 0
             BestDistance = 999
@@ -144,16 +157,16 @@ function Iterate()
                     return false
                 end
             end
-            print("Args:", sides.west, sides.top, 1, BestDroneIndex + 1, 2)
-            result = component.transposer.transferItem(sides.west, sides.top, 1, BestDroneIndex + 1, 2)
+            result = component.transposer.transferItem(alveary.Storage , alveary.Alveary, 1, BestDroneIndex + 1, 2)
             print("[DEBUG]:    Moved Drone", result)
-        else
+        elseif Princess then
             --choose pure A drone
             --move pure a drone to output chest
-            print("Args", sides.south, sides.top, 1, 1, 2)
-            result = component.transposer.transferItem(sides.south, sides.top, 1, 3, 2)
+            result = component.transposer.transferItem(alveary.Input , alveary.Alveary, 1, 3, 2)
             print("[DEBUG]:    Moved Fallback Drone", result)
         end
+        result = component.transposer.transferItem(alveary.Storage,alveary.Alveary, 1,PrincessSlot, 1)
+        print("[DEBUG]:    Moved Princess", result)
     end
     return true
 end
@@ -168,8 +181,9 @@ function Main()
         print("---------------------------------")
         i = i+1
         iterate = Iterate()
-        os.sleep(25)
+        os.sleep(35)
     end
+
 end
 --[[
 {[0]=
