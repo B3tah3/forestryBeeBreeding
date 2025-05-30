@@ -162,6 +162,7 @@ function Main()
     iterate = true
     i = 0
     while iterate do
+        print("---------------------------------")
         print("Iteration: ",i)
         print("---------------------------------")
         i = i+1
