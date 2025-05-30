@@ -10,7 +10,7 @@ hellishSide = sides.west
 lightSide = sides.north
 
 function climate.defaultBee()
-    return c.transposer.getStackInSlot(sides.west, 1)
+    return c.transposer.getStackInSlot(sides.east, 1)
 end
 
 
@@ -72,10 +72,12 @@ function climate.setTemperature(bee)
 end
 
 function climate.setLight(bee)
+  if (bee.individual.active.nocturnal and climate.light) or (not bee.individual.active.nocturnal and not climate.light)then
     c.redstone.setOutput(lightSide, 10)
     os.sleep(0.5)
     climate.light = not climate.light
     c.redstone.setOutput(lightSide, 0)
+    end
 end
 
 return climate

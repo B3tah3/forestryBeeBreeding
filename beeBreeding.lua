@@ -113,6 +113,7 @@ function Iterate()
                 print("Args:", sides.west, sides.top, 1, i + 1, 1)
                 climate.setHumidity(Princess)
                 climate.setTemperature(Princess)
+                climate.setLight(Princess)
                 result = component.transposer.transferItem(sides.west,sides.top, 1,i+1, 1)
                 print("[DEBUG]:    Moved Princess", result)
             end
