@@ -20,7 +20,7 @@ Forestry uses Percent (%) units, but they are all additive!
 There are three strategies for making bees feel comfortable in their home. You could find (or create) the correct biome, use the acclimitizer to give them high tolerances, or use the climate blocks in the Alveary (Fan, Heater, Hygroregulator).
 For scenarios that involve more than one species (stat breeding & mutating), relying only on biomes for climate control is impractical. You would have to change location every time the bee's active species switches. The acclimitizer can be useful, but also expensive in items to run (wax capsules, sand, snow, lava/blaze). We recommend using alveary climate controls, with the setup below:
 
-![Temperature Controlled Alveary](ClimateControlAll.png)
+![Temperature Controlled Alveary](images/ClimateControlAll.png)
 
 The alveary climate blocks have the following effects:
 |Block/Fluid|Temperature|Humidity|
@@ -55,7 +55,7 @@ Building between these y values makes sure you can reach Warm with 4 heaters. To
 |5 Heater|122, 10|121, 48|119, 86|Hot
 |        |   Arid| Normal|   Damp|
 
-![Temperature Controlled Input](ClimateControlInput.png)
+![Temperature Controlled Input](images/ClimateControlInput.png)
 
 With a redstone power level input panel, we can sucessivly toggle the energy conduits for the heaters and the pressurized fluid conduits for the water.
 To also support nether bees, add an electrical stimulator with a basic circuit board with one blazing electron tube.
