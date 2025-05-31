@@ -135,11 +135,13 @@ function Iterate()
                     end
                 end
             end
-            --move chosen drone to output chest
             if BestDistance == 0 then
                 PrincessDistance = MeasureDroneDistanceToTarget(Princess)
                 if PrincessDistance == 0 then
                     print("Breeding Done")
+                    --move princess and result drone to output
+                    Component.transposer.transferItem(Alveary.Storage , Alveary.Output, 1, PrincessSlot, 1)
+                    Component.transposer.transferItem(Alveary.Storage , Alveary.Output, 1, BestDroneIndex + 1, 2)
                     return false
                 end
             end
@@ -157,16 +159,59 @@ function Iterate()
     return true
 end
 
+function QueryTargetStats()
+    --let user decide target traits
+    InputDrawer = Component.transposer.getAllStacks(Alveary.Input).getAll()
+    TypeOneDrones = InputDrawer[2]
+    TypeTwoDrones = InputDrawer[3]
+    if not TypeOneDrones.individual or not TypeOneDrones.individual.active then
+        print("Missing or unscanned Drone in Slot 1")
+        return
+    end
+    if not TypeTwoDrones.individual or not TypeTwoDrones.individual.active then
+        print("Missing or unscanned Drone in Slot 2")
+        return
+    end
+    print("Answer A, B or [blank] to choose genes")
+    for k, TypeOneTrait in pairs(TypeOneDrones.individual.active) do
+        TypeTwoTrait = TypeTwoDrones.individual.active[k]
+        if k == "species" then
+            TypeOneTrait = TypeOneTrait.name
+            TypeTwoTrait = TypeTwoTrait.name
+        end
+        if k == "territory" then
+            print(TypeOneTrait, TypeTwoTrait)
+            TypeOneTrait = TypeOneTrait[1] .. "x" .. TypeOneTrait[2] .. "x" .. TypeOneTrait[3]
+            TypeTwoTrait = TypeTwoTrait[1] .. "x" .. TypeTwoTrait[2] .. "x" .. TypeTwoTrait[3]
+        end
+        if k == "effect" then
+            TypeOneTrait = TypeOneTrait:match("^[^%.]*%.[^%.]*%.[^%.]*%.(.*)")
+            TypeTwoTrait = TypeTwoTrait:match("^[^%.]*%.[^%.]*%.[^%.]*%.(.*)")
+        end
+        if k == "speed" then
+            TypeOneTrait = string.format("%.5f", TypeOneTrait)
+            TypeTwoTrait = string.format("%.5f", TypeTwoTrait)
+        end
+        --if TypeOneTrait ~= TypeTwoTrait then
+        local formatted = string.format("%-22s %-15s %-15s", k, TypeOneTrait, TypeTwoTrait)
+        print(formatted)
+        --end
+    end
+end
+
 function Main()
     print("Forestry Bee Breeding\n-------------------------------\n ©B3tah3 , XI_Wizzard\n")
-    Iterate = true
+    QueryTargetStats()
+
+    
+    MakeIterations = true
     local i = 0
-    while Iterate do
+    while MakeIterations do
         print("---------------------------------")
         print("Iteration: ",i)
         print("---------------------------------")
         i = i+1
-        Iterate = Iterate()
+        MakeIterations = Iterate()
         os.sleep(35)
     end
 
