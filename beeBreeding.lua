@@ -1,7 +1,8 @@
-IO = require("io")
+
 Sides = require("sides")
 Component = require("component")
 Climate = require("climate")
+TargetTraits = require("targetTraits")
 
 print("Component: ",Component)
 print("Sides: ",Sides)
@@ -19,9 +20,9 @@ Alveary = {
 --TargetTrait = {effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=20,temperatureTolerance="NONE",fertility=2,humidityTolerance="NONE",speed=0.30000001192093,tolerantFlyer=false,flowerProvider="flowersVanilla",caveDwelling=false,nocturnal=false}
 
 -- create a salt drone with flowers
-TargetTraitsA = {flowerProvider="flowersVanilla"}
+TargetTraits.A = {flowerProvider="flowersVanilla"}
 --TargetTraitsB = {species={temperature="Warm",humidity="Arid",name="Salt",uid="gregtech.bee.speciesSalty"}}
-TargetTraitsB = {species={temperature="Icy",humidity="Arid",name="Naquadah",uid="gregtech.bee.speciesNaquadah"}}
+TargetTraits.B = {species={temperature="Icy",humidity="Arid",name="Naquadah",uid="gregtech.bee.speciesNaquadah"}}
 
 function DeepEquals(a, b, visited)
     if a == b then return true end
@@ -49,7 +50,7 @@ end
 
 function IsDroneMissingBTrait(bee)
     --check if bee b is missing any traits from target in both active and inactive states
-    for k, v in pairs(TargetTraitsB) do
+    for k, v in pairs(TargetTraits.B) do
         if not DeepEquals(v, bee.individual.active[k]) and not DeepEquals(v, bee.individual.inactive[k]) then
             return true
         end
@@ -61,7 +62,7 @@ end
 --princs(B,A,A,A,A) passes
 --princs(A,A,A,B,A) fails
 function HasPrincessAllTargetA(bee)
-    for k, v in pairs(TargetTraitsA) do
+    for k, v in pairs(TargetTraits.A) do
         if not DeepEquals(v, bee.individual.active[k]) or not DeepEquals(v, bee.individual.inactive[k]) then
             return false
         end
@@ -71,7 +72,7 @@ end
 
 function MeasureDroneDistanceToTarget(bee)
     Distance = 0
-    for k, v in pairs(TargetTraitsA) do
+    for k, v in pairs(TargetTraits.A) do
         if not DeepEquals(v, bee.individual.active[k]) then
             Distance = Distance + 1
         end
@@ -79,7 +80,7 @@ function MeasureDroneDistanceToTarget(bee)
             Distance = Distance + 1
         end
     end
-    for k, v in pairs(TargetTraitsB) do
+    for k, v in pairs(TargetTraits.B) do
         if not DeepEquals(v, bee.individual.active[k]) then
             Distance = Distance + 1
         end
@@ -89,6 +90,8 @@ function MeasureDroneDistanceToTarget(bee)
     end
     return Distance
 end
+
+--function
 
 function FindPrincessAndTrashDrones(BeeChest)
     Princess = nil
@@ -109,6 +112,18 @@ function FindPrincessAndTrashDrones(BeeChest)
         end
     end
     return Princess
+end
+
+function TransferItemToFirstFreeSlot(sourceSide, sinkSide, count, sourceSlot)
+    local sinkData = Component.transposer.getAllStacks(sinkSide)
+    for i=0,sinkData.count() do
+        local slot = sinkData()
+        if next(slot)==nil then
+            --print("empty slot ",i)
+            Component.transposer.transferItem(sourceSide , sinkSide, count, sourceSlot, i)
+            return
+        end
+    end
 end
 
 function Iterate()
@@ -159,50 +174,12 @@ function Iterate()
     return true
 end
 
-function QueryTargetStats()
-    --let user decide target traits
-    InputDrawer = Component.transposer.getAllStacks(Alveary.Input).getAll()
-    TypeOneDrones = InputDrawer[2]
-    TypeTwoDrones = InputDrawer[3]
-    if not TypeOneDrones.individual or not TypeOneDrones.individual.active then
-        print("Missing or unscanned Drone in Slot 1")
-        return
-    end
-    if not TypeTwoDrones.individual or not TypeTwoDrones.individual.active then
-        print("Missing or unscanned Drone in Slot 2")
-        return
-    end
-    print("Answer A, B or [blank] to choose genes")
-    for k, TypeOneTrait in pairs(TypeOneDrones.individual.active) do
-        TypeTwoTrait = TypeTwoDrones.individual.active[k]
-        if k == "species" then
-            TypeOneTrait = TypeOneTrait.name
-            TypeTwoTrait = TypeTwoTrait.name
-        end
-        if k == "territory" then
-            print(TypeOneTrait, TypeTwoTrait)
-            TypeOneTrait = TypeOneTrait[1] .. "x" .. TypeOneTrait[2] .. "x" .. TypeOneTrait[3]
-            TypeTwoTrait = TypeTwoTrait[1] .. "x" .. TypeTwoTrait[2] .. "x" .. TypeTwoTrait[3]
-        end
-        if k == "effect" then
-            TypeOneTrait = TypeOneTrait:match("^[^%.]*%.[^%.]*%.[^%.]*%.(.*)")
-            TypeTwoTrait = TypeTwoTrait:match("^[^%.]*%.[^%.]*%.[^%.]*%.(.*)")
-        end
-        if k == "speed" then
-            TypeOneTrait = string.format("%.5f", TypeOneTrait)
-            TypeTwoTrait = string.format("%.5f", TypeTwoTrait)
-        end
-        --if TypeOneTrait ~= TypeTwoTrait then
-        local formatted = string.format("%-22s %-15s %-15s", k, TypeOneTrait, TypeTwoTrait)
-        print(formatted)
-        --end
-    end
-end
-
 function Main()
     print("Forestry Bee Breeding\n-------------------------------\n ©B3tah3 , XI_Wizzard\n")
-    QueryTargetStats()
-
+    InputDrawer = Component.transposer.getAllStacks(Alveary.Input).getAll()
+    TargetTraits.QueryTargetStats(InputDrawer)
+    -- send Type B drones to storage, Type A to slot 2
+    TransferItemToFirstFreeSlot(Alveary.Input, Alveary.Storage, 64, TargetTraits.BSlot)
     
     MakeIterations = true
     local i = 0
