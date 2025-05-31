@@ -1,0 +1,104 @@
+Temp% -> Temp
+Icy: :0
+Cold: 0:35
+Normal: 35:85
+Warm: 85:100
+Hot: 100:
+
+Humid% -> Humid
+Arid: 0:30
+Normal: 30:85
+
+
+Bee Climate Changing
+Snow Forest: 0 / 10	Icy
+1 Heater: 27 / 10	Cold
+2 Heater: 56 / 10	Normal
+3 Heater: 84 / 10	Normal
+4 Heater 113 / 10	Hot
+
+Hot Desert: 96 / 0	Warm
+1 Fan:      77 / 0	Normal
+2 Fan:      58 / 0	Normal
+3 Fan:      39 / 0	Normal
+4 Fan:      20 / 0	Cold
+5 Fan:       1 / 0	Cold
+6 Fan      -17 / 0	Icy
+
+Hot Desert + 2 Water: 94 / 38	Warm
+1 Fan:      75 / 38	Normal
+2 Fan:      56 / 38	Normal
+3 Fan:      37 / 38	Normal
+4 Fan:      18 / 38	Cold
+5 Fan:       3 / 38	Cold
+6 Fan        3 / 38	Cold :(
+1 Heater   123 / 38	Hot
+
+
+
+
+Snow Forest: -27 / 10	Icy	(y=233)
+1 Heater: 0-1 / 10	Cold
+2 Heater:  29 / 10	Cold
+3 Heater:  57 / 10	Normal
+4 Heater   86 / 10	Warm
+5 Heater  114 / 10	Hot
+
+Snow Forest + 2 Water: 0 / 48	Icy	(y=233)
+1 Heater:   0 / 48	Icy			(make warmer)
+2 Heater:  27 / 48	Cold
+3 Heater:  56 / 48	Normal
+4 Heater   84 / 48	Norma !!!!!!! (make slightly warmer)
+5 Heater  113 / 48	Hot
+
+Snow Forest + 4 Water: 0 / 86	Icy	(y=233)
+1 Heater:   0 / 86	Icy
+2 Heater:  25 / 86	Cold
+3 Heater:  54 / 86	Normal
+4 Heater   82 / 86	Normal
+5 Heater  110 / 86	Hot
+
+
+Snow Forest: -23 / 86	Icy	(y=205)
+1 Heater:   4 / 10	Cold
+2 Heater:  33 / 10	Cold
+3 Heater:  61 / 10	Normal
+4 Heater   90 / 10	Warm
+5 Heater  118 / 10	Hot
+
+Snow Forest + 2 Water: 0 / 48	Icy	(y=205)
+1 Heater:   3 / 48	Cold
+2 Heater:  31 / 48	Cold
+3 Heater:  60 / 48	Normal
+4 Heater   88 / 48	Warm
+5 Heater  116 / 48	Hot
+
+Snow Forest + 4 Water: 0 / 86	Icy	(y=205)
+1 Heater:   1 / 86	Cold
+2 Heater:  27 / 86	Cold
+3 Heater:  56 / 86	Normal
+4 Heater   86 / 86	Warm
+5 Heater  115 / 86	Hot
+
+
+Heater += 28% points
+Fan -= 19% points
+
+Water += 28% points
+Lava -= 19% points
+
+16 Upgrade Blocks:
+	5 heater
+	4 hygroregulator
+	1 frame housing
+
+
+y level temp
+67      0
+68      -1
+105     -6
+106     -7
+139     -11
+140     -12
+252     -30
+253     -31
