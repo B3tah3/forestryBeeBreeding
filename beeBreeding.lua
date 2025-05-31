@@ -1,197 +1,204 @@
-
 Sides = require("sides")
 Component = require("component")
 Climate = require("climate")
 TargetTraits = require("targetTraits")
 
-print("Component: ",Component)
-print("Sides: ",Sides)
+print("Component: ", Component)
+print("Sides: ", Sides)
 print("West: ", Sides.west)
 
-
 Alveary = {
-    Storage = Sides.east,
-    Alveary = Sides.south,
-    Trash = Sides.top,
-    Output = Sides.north,
-    Input = Sides.west
+	Storage = Sides.east,
+	Alveary = Sides.south,
+	Trash = Sides.top,
+	Output = Sides.north,
+	Input = Sides.west,
 }
 
 --TargetTrait = {effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=20,temperatureTolerance="NONE",fertility=2,humidityTolerance="NONE",speed=0.30000001192093,tolerantFlyer=false,flowerProvider="flowersVanilla",caveDwelling=false,nocturnal=false}
 
 -- create a salt drone with flowers
-TargetTraits.A = {flowerProvider="flowersVanilla"}
+TargetTraits.A = { flowerProvider = "flowersVanilla" }
 --TargetTraitsB = {species={temperature="Warm",humidity="Arid",name="Salt",uid="gregtech.bee.speciesSalty"}}
-TargetTraits.B = {species={temperature="Icy",humidity="Arid",name="Naquadah",uid="gregtech.bee.speciesNaquadah"}}
+TargetTraits.B =
+	{ species = { temperature = "Icy", humidity = "Arid", name = "Naquadah", uid = "gregtech.bee.speciesNaquadah" } }
 
 function DeepEquals(a, b, visited)
-    if a == b then return true end
-    if type(a) ~= type(b) then return false end
-    if type(a) ~= "table" then return false end
+	if a == b then
+		return true
+	end
+	if type(a) ~= type(b) then
+		return false
+	end
+	if type(a) ~= "table" then
+		return false
+	end
 
-    visited = visited or {}
-    if visited[a] and visited[a] == b then return true end
-    visited[a] = b
+	visited = visited or {}
+	if visited[a] and visited[a] == b then
+		return true
+	end
+	visited[a] = b
 
-    -- Compare keys and values
-    for k in pairs(a) do
-        if not DeepEquals(a[k], b[k], visited) then
-            return false
-        end
-    end
-    for k in pairs(b) do
-        if not DeepEquals(a[k], b[k], visited) then
-            return false
-        end
-    end
+	-- Compare keys and values
+	for k in pairs(a) do
+		if not DeepEquals(a[k], b[k], visited) then
+			return false
+		end
+	end
+	for k in pairs(b) do
+		if not DeepEquals(a[k], b[k], visited) then
+			return false
+		end
+	end
 
-    return true
+	return true
 end
 
 function IsDroneMissingBTrait(bee)
-    --check if bee b is missing any traits from target in both active and inactive states
-    for k, v in pairs(TargetTraits.B) do
-        if not DeepEquals(v, bee.individual.active[k]) and not DeepEquals(v, bee.individual.inactive[k]) then
-            return true
-        end
-    end
-    return false
+	--check if bee b is missing any traits from target in both active and inactive states
+	for k, v in pairs(TargetTraits.B) do
+		if not DeepEquals(v, bee.individual.active[k]) and not DeepEquals(v, bee.individual.inactive[k]) then
+			return true
+		end
+	end
+	return false
 end
 --target(B,B,A,A,A)
 --princs(A,A,A,A,A) passes
 --princs(B,A,A,A,A) passes
 --princs(A,A,A,B,A) fails
 function HasPrincessAllTargetA(bee)
-    for k, v in pairs(TargetTraits.A) do
-        if not DeepEquals(v, bee.individual.active[k]) or not DeepEquals(v, bee.individual.inactive[k]) then
-            return false
-        end
-    end
-    return true
+	for k, v in pairs(TargetTraits.A) do
+		if not DeepEquals(v, bee.individual.active[k]) or not DeepEquals(v, bee.individual.inactive[k]) then
+			return false
+		end
+	end
+	return true
 end
 
 function MeasureDroneDistanceToTarget(bee)
-    Distance = 0
-    for k, v in pairs(TargetTraits.A) do
-        if not DeepEquals(v, bee.individual.active[k]) then
-            Distance = Distance + 1
-        end
-        if not DeepEquals(v, bee.individual.inactive[k]) then
-            Distance = Distance + 1
-        end
-    end
-    for k, v in pairs(TargetTraits.B) do
-        if not DeepEquals(v, bee.individual.active[k]) then
-            Distance = Distance + 1
-        end
-        if not DeepEquals(v, bee.individual.inactive[k]) then
-            Distance = Distance + 1
-        end
-    end
-    return Distance
+	Distance = 0
+	for k, v in pairs(TargetTraits.A) do
+		if not DeepEquals(v, bee.individual.active[k]) then
+			Distance = Distance + 1
+		end
+		if not DeepEquals(v, bee.individual.inactive[k]) then
+			Distance = Distance + 1
+		end
+	end
+	for k, v in pairs(TargetTraits.B) do
+		if not DeepEquals(v, bee.individual.active[k]) then
+			Distance = Distance + 1
+		end
+		if not DeepEquals(v, bee.individual.inactive[k]) then
+			Distance = Distance + 1
+		end
+	end
+	return Distance
 end
 
 --function
 
 function FindPrincessAndTrashDrones(BeeChest)
-    Princess = nil
-    for i , bee in pairs(BeeChest) do
-        if bee.individual then
-            if bee.individual.active and bee.individual.inactive and not (bee.name == "Forestry:beePrincessGE") then
-                print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee)))
-                if IsDroneMissingBTrait(bee) then
-                    Component.transposer.transferItem(Alveary.Storage , Alveary.Trash , 64 , i+1 , 1 )
-                end
-            end
-            if not Princess and bee.name == "Forestry:beePrincessGE" then
-                Climate.setHumidity(bee)
-                Climate.setTemperature(bee)
-                Climate.setLight(bee)
-                Princess =  { princess = bee, slot = i + 1 }
-            end
-        end
-    end
-    return Princess
+	Princess = nil
+	for i, bee in pairs(BeeChest) do
+		if bee.individual then
+			if bee.individual.active and bee.individual.inactive and not (bee.name == "Forestry:beePrincessGE") then
+				print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee)))
+				if IsDroneMissingBTrait(bee) then
+					TransferItemToFirstFreeSlot(Alveary.Storage, Alveary.Trash, 64, i + 1)
+				end
+			end
+			if not Princess and bee.name == "Forestry:beePrincessGE" then
+				Climate.setHumidity(bee)
+				Climate.setTemperature(bee)
+				Climate.setLight(bee)
+				Princess = { princess = bee, slot = i + 1 }
+			end
+		end
+	end
+	return Princess
 end
 
 function TransferItemToFirstFreeSlot(sourceSide, sinkSide, count, sourceSlot)
-    local sinkData = Component.transposer.getAllStacks(sinkSide)
-    for i=0,sinkData.count() do
-        local slot = sinkData()
-        if next(slot)==nil then
-            --print("empty slot ",i)
-            Component.transposer.transferItem(sourceSide , sinkSide, count, sourceSlot, i)
-            return
-        end
-    end
+	local sinkData = Component.transposer.getAllStacks(sinkSide)
+	for i = 0, sinkData.count() do
+		local slot = sinkData()
+		if next(slot) == nil then
+			print("Move from side", sourceSide, "to Side", sinkSide)
+			Component.transposer.transferItem(sourceSide, sinkSide, count, sourceSlot, i + 1)
+			os.sleep(0.5)
+			return
+		end
+	end
 end
 
 function Iterate()
-    BeeChest = Component.transposer.getAllStacks(Alveary.Storage).getAll()
+	BeeChest = Component.transposer.getAllStacks(Alveary.Storage).getAll()
 
-    --loop over every inventory slot and check if the individual is missing B Target Genes --TODO trash drones
-    SearchResult = FindPrincessAndTrashDrones(BeeChest)
-    if SearchResult then
-        Princess = SearchResult.princess
-        PrincessSlot = SearchResult.slot
-        if Princess and  HasPrincessAllTargetA(Princess) then
-            --choose best drone
-            BestDroneIndex = 0
-            BestDistance = 999
-            for i = 0, 26 do
-                if BeeChest[i] and BeeChest[i].name == "Forestry:beeDroneGE" then
-                    local bee = BeeChest[i]
-                    if bee.individual and bee.individual.active and bee.individual.inactive then
-                        DistanceToTarget = MeasureDroneDistanceToTarget(bee)
-                        if DistanceToTarget < BestDistance then
-                            BestDistance = DistanceToTarget
-                            BestDroneIndex = i
-                        end
-                    end
-                end
-            end
-            if BestDistance == 0 then
-                PrincessDistance = MeasureDroneDistanceToTarget(Princess)
-                if PrincessDistance == 0 then
-                    print("Breeding Done")
-                    --move princess and result drone to output
-                    Component.transposer.transferItem(Alveary.Storage , Alveary.Output, 1, PrincessSlot, 1)
-                    Component.transposer.transferItem(Alveary.Storage , Alveary.Output, 1, BestDroneIndex + 1, 2)
-                    return false
-                end
-            end
-            Result = Component.transposer.transferItem(Alveary.Storage , Alveary.Alveary, 1, BestDroneIndex + 1, 2)
-            print("[DEBUG]:    Moved Drone", Result)
-        elseif Princess then
-            --choose pure A drone
-            --move pure a drone to output chest
-            Result = Component.transposer.transferItem(Alveary.Input , Alveary.Alveary, 1, 3, 2)
-            print("[DEBUG]:    Moved Fallback Drone", Result)
-        end
-        Result = Component.transposer.transferItem(Alveary.Storage,Alveary.Alveary, 1,PrincessSlot, 1)
-        print("[DEBUG]:    Moved Princess", Result)
-    end
-    return true
+	--loop over every inventory slot and check if the individual is missing B Target Genes --TODO trash drones
+	SearchResult = FindPrincessAndTrashDrones(BeeChest)
+	if SearchResult then
+		Princess = SearchResult.princess
+		PrincessSlot = SearchResult.slot
+		if Princess and HasPrincessAllTargetA(Princess) then
+			--choose best drone
+			BestDroneIndex = 0
+			BestDistance = 999
+			for i = 0, 26 do
+				if BeeChest[i] and BeeChest[i].name == "Forestry:beeDroneGE" then
+					local bee = BeeChest[i]
+					if bee.individual and bee.individual.active and bee.individual.inactive then
+						DistanceToTarget = MeasureDroneDistanceToTarget(bee)
+						if DistanceToTarget < BestDistance then
+							BestDistance = DistanceToTarget
+							BestDroneIndex = i
+						end
+					end
+				end
+			end
+			if BestDistance == 0 then
+				PrincessDistance = MeasureDroneDistanceToTarget(Princess)
+				if PrincessDistance == 0 then
+					print("Breeding Done")
+					--move princess and result drone to output
+					Component.transposer.transferItem(Alveary.Storage, Alveary.Output, 1, PrincessSlot, 1)
+					Component.transposer.transferItem(Alveary.Storage, Alveary.Output, 1, BestDroneIndex + 1, 2)
+					return false
+				end
+			end
+			Result = Component.transposer.transferItem(Alveary.Storage, Alveary.Alveary, 1, BestDroneIndex + 1, 2)
+			print("[DEBUG]:    Moved Drone", Result)
+		elseif Princess then
+			--choose pure A drone
+			--move pure a drone to output chest
+			Result = Component.transposer.transferItem(Alveary.Input, Alveary.Alveary, 1, TargetTraits.ASlot, 2)
+			print("[DEBUG]:    Moved Fallback Drone", Result)
+		end
+		Result = Component.transposer.transferItem(Alveary.Storage, Alveary.Alveary, 1, PrincessSlot, 1)
+		print("[DEBUG]:    Moved Princess", Result)
+	end
+	return true
 end
 
 function Main()
-    print("Forestry Bee Breeding\n-------------------------------\n ©B3tah3 , XI_Wizzard\n")
-    InputDrawer = Component.transposer.getAllStacks(Alveary.Input).getAll()
-    TargetTraits.QueryTargetStats(InputDrawer)
-    -- send Type B drones to storage, Type A to slot 2
-    TransferItemToFirstFreeSlot(Alveary.Input, Alveary.Storage, 64, TargetTraits.BSlot)
-    
-    MakeIterations = true
-    local i = 0
-    while MakeIterations do
-        print("---------------------------------")
-        print("Iteration: ",i)
-        print("---------------------------------")
-        i = i+1
-        MakeIterations = Iterate()
-        os.sleep(35)
-    end
+	print("Forestry Bee Breeding\n-------------------------------\n ©B3tah3 , XI_Wizzard\n")
+	InputDrawer = Component.transposer.getAllStacks(Alveary.Input).getAll()
+	TargetTraits.QueryTargetStats(InputDrawer)
+	-- send Type B drones to storage, Type A to slot 2
+	TransferItemToFirstFreeSlot(Alveary.Input, Alveary.Storage, 64, TargetTraits.BSlot)
 
+	MakeIterations = true
+	local i = 0
+	while MakeIterations do
+		print("---------------------------------")
+		print("Iteration: ", i)
+		print("---------------------------------")
+		i = i + 1
+		MakeIterations = Iterate()
+		os.sleep(35)
+	end
 end
 --[[
 {[0]=
@@ -208,5 +215,6 @@ end
             active={effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Warm",humidity="Arid",name="Salt",uid="gregtech.bee.speciesSalty"},flowering=25,lifespan=20,temperatureTolerance="DOWN_1",fertility=2,humidityTolerance="NONE",speed=0.60000002384186,tolerantFlyer=false,flowerProvider="flowersCacti",caveDwelling=false,nocturnal=false},displayName="Salt",isSecret=false,isAnalyzed=true,type="bee",
             inactive={effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Warm",humidity="Arid",name="Salt",uid="gregtech.bee.speciesSalty"},flowering=25,lifespan=20,temperatureTolerance="DOWN_1",fertility=2,humidityTolerance="NONE",speed=0.60000002384186,tolerantFlyer=false,flowerProvider="flowersCacti",caveDwelling=false,nocturnal=false},canSpawn=false,isAlive=true,generation=0,ident="gregtech.bee.speciesSalty"},maxSize=64,label="Salt Drone",name="Forestry:beeDroneGE",size=1,inputs={},isCraftable=false,hasTag=true,tag="\31�\8\0\0\0\0\0\0����N�@\16\6�T�\"\23�?�\4�G \16�\3\\�\15��i�ɲCv7b}z�l\7��\11���ͯ���\0\26\16.��\12\0z\13h�P(�\29\14\1Ds;�B埸\9\"h���-��3�\12m�\22\7\27\21�n\11·�d\8��`�0�\6kā�a,Ѯ\n/?6^�i\4\16�\0209�\18�%d�:�\31j�)�=�ҩ\12=\0170��-%\19�;�W\25\25wbj\11����\0184N*��%��P�ԟ��\26L=qӑB#t�\19��a)��\30\n\25���HM��X\26\21�\31������,I3Q\19{�治h]6����ڿ�\1;\22���P�z$��ı&u:\21֝o�W�\0143����\24����bs)?Q}�c���s\21�\4c���Te\30�\22��\23FG�\"�\3\0\0"
     },{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}}
-]]--
+]]
+--
 Main()
