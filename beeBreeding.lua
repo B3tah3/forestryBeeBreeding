@@ -2,18 +2,7 @@ Sides = require("sides")
 Component = require("component")
 Climate = require("climate")
 TargetTraits = require("targetTraits")
-
-print("Component: ", Component)
-print("Sides: ", Sides)
-print("West: ", Sides.west)
-
-Alveary = {
-	Storage = Sides.east,
-	Alveary = Sides.south,
-	Trash = Sides.top,
-	Output = Sides.north,
-	Input = Sides.west,
-}
+Utils = require("utils")
 
 --TargetTrait = {effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=20,temperatureTolerance="NONE",fertility=2,humidityTolerance="NONE",speed=0.30000001192093,tolerantFlyer=false,flowerProvider="flowersVanilla",caveDwelling=false,nocturnal=false}
 
@@ -107,7 +96,7 @@ function FindPrincessAndTrashDrones(BeeChest)
 			if bee.individual.active and bee.individual.inactive and not (bee.name == "Forestry:beePrincessGE") then
 				print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee)))
 				if IsDroneMissingBTrait(bee) then
-					TransferItemToFirstFreeSlot(Alveary.Storage, Alveary.Trash, 64, i + 1)
+					Utils.TransferItemToFirstFreeSlot(Config.Storage, Config.Trash, 64, i + 1)
 				end
 			end
 			if not Princess and bee.name == "Forestry:beePrincessGE" then
@@ -121,21 +110,8 @@ function FindPrincessAndTrashDrones(BeeChest)
 	return Princess
 end
 
-function TransferItemToFirstFreeSlot(sourceSide, sinkSide, count, sourceSlot)
-	local sinkData = Component.transposer.getAllStacks(sinkSide)
-	for i = 0, sinkData.count() do
-		local slot = sinkData()
-		if next(slot) == nil then
-			print("Move from side", sourceSide, "to Side", sinkSide)
-			Component.transposer.transferItem(sourceSide, sinkSide, count, sourceSlot, i + 1)
-			os.sleep(0.5)
-			return
-		end
-	end
-end
-
 function Iterate()
-	BeeChest = Component.transposer.getAllStacks(Alveary.Storage).getAll()
+	BeeChest = Component.transposer.getAllStacks(Config.Storage).getAll()
 
 	--loop over every inventory slot and check if the individual is missing B Target Genes --TODO trash drones
 	SearchResult = FindPrincessAndTrashDrones(BeeChest)
@@ -163,20 +139,20 @@ function Iterate()
 				if PrincessDistance == 0 then
 					print("Breeding Done")
 					--move princess and result drone to output
-					Component.transposer.transferItem(Alveary.Storage, Alveary.Output, 1, PrincessSlot, 1)
-					Component.transposer.transferItem(Alveary.Storage, Alveary.Output, 1, BestDroneIndex + 1, 2)
+					Component.transposer.transferItem(Config.Storage, Config.Output, 1, PrincessSlot, 1)
+					Component.transposer.transferItem(Config.Storage, Config.Output, 1, BestDroneIndex + 1, 2)
 					return false
 				end
 			end
-			Result = Component.transposer.transferItem(Alveary.Storage, Alveary.Alveary, 1, BestDroneIndex + 1, 2)
+			Result = Component.transposer.transferItem(Config.Storage, Config.Config, 1, BestDroneIndex + 1, 2)
 			print("[DEBUG]:    Moved Drone", Result)
 		elseif Princess then
 			--choose pure A drone
 			--move pure a drone to output chest
-			Result = Component.transposer.transferItem(Alveary.Input, Alveary.Alveary, 1, TargetTraits.ASlot, 2)
+			Result = Component.transposer.transferItem(Config.Input, Config.Config, 1, TargetTraits.ASlot, 2)
 			print("[DEBUG]:    Moved Fallback Drone", Result)
 		end
-		Result = Component.transposer.transferItem(Alveary.Storage, Alveary.Alveary, 1, PrincessSlot, 1)
+		Result = Component.transposer.transferItem(Config.Storage, Config.Config, 1, PrincessSlot, 1)
 		print("[DEBUG]:    Moved Princess", Result)
 	end
 	return true
@@ -184,10 +160,10 @@ end
 
 function Main()
 	print("Forestry Bee Breeding\n-------------------------------\n ©B3tah3 , XI_Wizzard\n")
-	InputDrawer = Component.transposer.getAllStacks(Alveary.Input).getAll()
+	InputDrawer = Component.transposer.getAllStacks(Config.Input).getAll()
 	TargetTraits.QueryTargetStats(InputDrawer)
 	-- send Type B drones to storage, Type A to slot 2
-	TransferItemToFirstFreeSlot(Alveary.Input, Alveary.Storage, 64, TargetTraits.BSlot)
+	Utils.TransferItemToFirstFreeSlot(Config.Input, Config.Storage, 64, TargetTraits.BSlot)
 
 	MakeIterations = true
 	local i = 0
