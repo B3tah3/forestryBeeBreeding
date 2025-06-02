@@ -1,5 +1,6 @@
 import random
 import math
+import statistics
 verbosity = False
 
 class Bee:
@@ -65,6 +66,9 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
         population.add(Bee.from_species(species,numberOfRetainedGenes, numberOfSuperGenes,math.inf))
     queen = Bee.from_species("A",numberOfRetainedGenes, numberOfSuperGenes)
     target = Bee((('B', 'B'),) *(numberOfRetainedGenes)+ (('A', 'A'),) * (numberOfSuperGenes))
+
+    countADrones:int = 0
+    countBDrones:int = 0
     #print("Initial population:")
     #for bee in population:
     #    print(bee)
@@ -81,7 +85,7 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
                 if drone.__distance__(target) == 0 :
                     #print(f"Drone {drone} is equal to the target!")
                     #print(f"Generation {i} complete.")
-                    return i
+                    return (i, countADrones, countBDrones)
 
         
         if verbosity: print(f"\nQueen: {queen} Distance to target: {queen.__distance__(target)}")
@@ -129,25 +133,51 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
 
         #decrease one from the count of the father drone
         father_drone.amount -= 1
+        if father_drone == Bee.from_species("A",numberOfRetainedGenes, numberOfSuperGenes, math.inf):
+            countADrones += 1
+        if father_drone == Bee.from_species("B",numberOfRetainedGenes, numberOfSuperGenes, math.inf):
+            countBDrones += 1
+        
         if father_drone.amount <= 0:
             population.remove(father_drone)
         queen = new_queen
-    return i
+    return (i, countADrones, countBDrones)
 
-Combinations_numberOfRetainedGenes = [1,2,3,4]
-Combinations_numberOfSuperGenes = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-Combinations_fertility = [2,3,4]
+Combinations_numberOfRetainedGenes = [1]
+Combinations_numberOfSuperGenes = [1,2,3,4,5,6,7,8,9,10,11]
+Combinations_fertility = [1]
 
 def simulate_quality_breeding_with_params(numberOfRetainedGenes, numberOfSuperGenes, fertility):
     print(f"Genes: {numberOfRetainedGenes} / {numberOfSuperGenes} | Fertility: {fertility}")
     generations = []
-    for i in range(100):
-        numberOfGenerations = simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertility)
+    dronesA = []
+    dronesB = []
+    for i in range(1000):
+        (numberOfGenerations, countADrones, countBDrones) = simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertility)
         generations.append(numberOfGenerations)
+        dronesA.append(countADrones)
+        dronesB.append(countBDrones)
+        
         
     average_generations = sum(generations) / len(generations)
     median_generations = sorted(generations)[len(generations) // 2]
+
+    average_ADrones = sum(dronesA) / len(dronesA)
+    max_ADrones = max(dronesA)
+    std_ADrones = statistics.stdev(dronesA)
+    fiveSigmaEnoughA = 5*std_ADrones+average_ADrones
+
+    average_BDrones = sum(dronesB) / len(dronesB)
+    max_BDrones = max(dronesB)
+    std_BDrones = statistics.stdev(dronesB)
+    fiveSigmaEnoughB = 5*std_BDrones+average_BDrones
+
+    
     print(f"Average generations to target: {average_generations}, Median generations: {median_generations}")
+    print(f"Average A drone consumption: {average_ADrones}, Max: {max_ADrones}, std: {std_ADrones}, 5*std+avg: {fiveSigmaEnoughA}")
+    print(f"Average B drone consumption: {average_BDrones}, Max: {max_BDrones}, std: {std_BDrones}, 5*std+avg: {fiveSigmaEnoughB}")
+    
+
     #print(f"Standard deviation: {math.sqrt(sum((g - sum(generations) / len(generations)) ** 2 for g in generations) / len(generations))}")
     return average_generations
 
@@ -157,6 +187,8 @@ def __main__():
         for numberOfSuperGenes in Combinations_numberOfSuperGenes:
             for fertility in Combinations_fertility:
                 if numberOfRetainedGenes > numberOfSuperGenes:
+                    continue
+                if numberOfRetainedGenes + numberOfSuperGenes > 12:
                     continue
                 simulate_quality_breeding_with_params(numberOfRetainedGenes, numberOfSuperGenes, fertility)
 
