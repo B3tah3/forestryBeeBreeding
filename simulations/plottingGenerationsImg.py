@@ -25,7 +25,7 @@ def plot_results(file_path):
     #change to read four lines at a time
     for i in range(0, len(lines), 4):
         fourLines = ''.join(lines[i:i+4])
-        match = re.search(r'Genes: (\d+) / (\d+) \| Fertility: 2', fourLines)
+        match = re.search(r'Genes: (\d+) / (\d+) \| Fertility: 4', fourLines)
         match_median = re.search(r'Median generations: ([\d.]+)', fourLines)
         if match and match_median:
             
@@ -62,7 +62,7 @@ def plot_results(file_path):
     plt.colorbar(label='Median Generations')
     plt.xlabel('# A Genes')
     plt.ylabel('# B Genes')
-    plt.title('Median # Generation of Trait Selection Combinations\nFertility 2')
+    plt.title('Median # Generation of Trait Selection Combinations\nFertility 4')
     for i, y in enumerate(super_genes):
         for j, x in enumerate(other_genes):
             if not math.isnan(Z[i, j]):

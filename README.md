@@ -76,6 +76,13 @@ There is no upper limit on how many generations the program will take. You can a
 
 Our current algorithm is optimized for choosing many traits from one (super) bee colony and few traits from the other colony. Transferring one non-super trait at a time can take fewer generations than transferring multiple at once, although this is more manual work. For example, lets say you have a super bee with 8 good traits, and a new species with 2 good ones. You could run the program as 2+8=10 traits (median 36 generations), or you could first run 1+8=9 traits and then 1+9=10 traits (median 13 + 14 = 27 generations). To do this, select ignore for one of the 2 traits. Then multiply the 9 trait drone a few times, and use it again in the input drawer. We have a concept for an algorithm that would be faster in combining many with many traits, but it is not yet implemented.
 
+sneak preview of new algorithm performance:
+|||
+|-|-|
+|![Median Generations 4x Fert](images/medianGens_multiGeneAlg_Fert4.png)|![Median Generations 3x Fert](images/medianGens_multiGeneAlg_Fert3.png)|
+|![Median Generations 2x Fert](images/medianGens_multiGeneAlg_Fert2.png)|![Median Generations 1x Fert](images/medianGens_multiGeneAlg_Fert1.png)|
+
+
 
 
 ### How many drones should you provide?
@@ -86,3 +93,10 @@ You will need more of the drones you want to take more traits from. When taking 
 |-|-|
 |![Drone Consumption 4x Fert](images/droneConsuption_Fert4.png)|![Drone Consumption 3x Fert](images/droneConsuption_Fert3.png)|
 |![Drone Consumption 2x Fert](images/droneConsuption_Fert2.png)|![Drone Consumption 1x Fert](images/droneConsuption_Fert1.png)|
+
+sneak preview of new algorithm performance:
+|||
+|-|-|
+|![Drone Cost 4x Fert](images/droneCost_multiGenAlg_Fert4.png)|![Drone Cost 3x Fert](images/droneCost_multiGenAlg_Fert3.png)|
+|![Drone Cost 2x Fert](images/droneCost_multiGenAlg_Fert2.png)|![Drone Cost 1x Fert](images/droneCost_multiGenAlg_Fert1.png)|
+
