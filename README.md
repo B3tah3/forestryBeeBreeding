@@ -76,6 +76,8 @@ There is no upper limit on how many generations the program will take. You can a
 
 Our current algorithm is optimized for choosing many traits from one (super) bee colony and few traits from the other colony. Transferring one non-super trait at a time can take fewer generations than transferring multiple at once, although this is more manual work. For example, lets say you have a super bee with 8 good traits, and a new species with 2 good ones. You could run the program as 2+8=10 traits (median 36 generations), or you could first run 1+8=9 traits and then 1+9=10 traits (median 13 + 14 = 27 generations). To do this, select ignore for one of the 2 traits. Then multiply the 9 trait drone a few times, and use it again in the input drawer. We have a concept for an algorithm that would be faster in combining many with many traits, but it is not yet implemented.
 
+
+
 ### How many drones should you provide?
 You will need more of the drones you want to take more traits from. When taking exactly one trait from the other drones, use at least as many drones as shown in the plots below. If you take more In summary, unless when dealing with Fertility 1, using 50+ super drones and 5+ of the others will be enough.
 

@@ -43,7 +43,7 @@ def isBeePure(bee:Bee, target:Bee, pure_species_gene = "A"):
             if g1 != pure_species_gene or g2 != pure_species_gene:
                 return False
     return True
-
+'''
 def isBeeMissingTargetGene(bee:Bee, target:Bee, target_species_gene= "B"):
     #check if the bee has at least one B of all B target genes
     for (g1, g2), (tg1, tg2) in zip(bee.gene, target.gene):
@@ -53,12 +53,55 @@ def isBeeMissingTargetGene(bee:Bee, target:Bee, target_species_gene= "B"):
             if g1 != target_species_gene and g2 != target_species_gene:
                 return True
     return False
+'''
+def isBeeMissingAllTargetGenes(bee:Bee, target:Bee, target_species_gene= "B"):
+    #check if the bee has at least one B of all B target genes
+    for (g1, g2), (tg1, tg2) in zip(bee.gene, target.gene):
+        # does the target require a B gene?
+        if tg1 == target_species_gene or tg2 == target_species_gene:
+            # does the bee not have a B gene?
+            if g1 == target_species_gene or g2 == target_species_gene:
+                return False
+    return True
 
+#identify half trash that could become useful, but is irrelevant to the current queen
+def isDroneMissingAllRelevantTargetGenes(drone, target, queen, target_species_gene= "B"):
+    for (g1, g2), (tg1, tg2), (q1, q2) in zip(drone.gene, target.gene,queen.gene):
+        # does the target require a B gene?
+        if tg1 == target_species_gene or tg2 == target_species_gene:
+            # is the queen missing a B gene
+            if q1 != target_species_gene or q2 != target_species_gene:
+                #does the drone have a B gene to contribute
+                if g1 == target_species_gene or g2 == target_species_gene:
+                    return False
+    return True
+
+'''
+def countMaskedTargetDistance(bee:Bee, target:Bee, queen:Bee, target_species_gene= "B"):
+    #count differene between bee and target genes, but dont count target genes that are in the queen
+    count = 0
+    for (g1, g2), (tg1, tg2), (q1, q2) in zip(bee.gene, target.gene,queen.gene):
+        # does the target require a B gene?
+        if tg1 == target_species_gene or tg2 == target_species_gene:
+            # is the queen missing a B gene
+            if q1 != target_species_gene or q2 != target_species_gene:
+                if g1 != tg1:
+                    count += 1
+                if g2 != tg2:
+                    count += 1
+        else:
+            # if the target does not require a B gene, count all differences
+            if g1 != tg1:
+                count += 1
+            if g2 != tg2:
+                count += 1
+    return count
+'''
 def isBeeWorseThanPure(bee, target,numberOfRetainedGenes:int, numberOfSuperGenes:int, target_species_gene = "B", pure_species_gene = "A"):
     #check if the bee is pure A
     if(bee == Bee.from_species(pure_species_gene, numberOfRetainedGenes, numberOfSuperGenes)):
         return False
-    return isBeeMissingTargetGene(bee, target, target_species_gene)
+    return isBeeMissingAllTargetGenes(bee, target, target_species_gene)
 
 def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertility): 
     population = set()
@@ -95,20 +138,18 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
         #print(f"Is Queen bad and should be reset: {purify_queen}")
         is_queen_pure = isBeePure(queen, target)
         father_drone:Bee = Bee.from_species("A",numberOfRetainedGenes, numberOfSuperGenes, math.inf)
-        if purify_queen:
+        if purify_queen or not is_queen_pure:
             father_drone = Bee.from_species("A",numberOfRetainedGenes, numberOfSuperGenes, math.inf)
         else:
-            if not is_queen_pure:
-                father_drone = Bee.from_species("A",numberOfRetainedGenes, numberOfSuperGenes, math.inf)
-            else:
-                
-                best_distance = math.inf
-                for drone in population:
-                    distance = drone.__distance__(target)
-                    if verbosity: print(f"    Drone: {drone} Distance to target: {distance}")
-                    if distance < best_distance and not isBeeMissingTargetGene(drone, target):
-                        best_distance = distance
-                        father_drone = drone
+            best_distance = math.inf
+            for drone in population:
+                distance = drone.__distance__(target)
+                isDroneRelevant = not isDroneMissingAllRelevantTargetGenes(drone, target, queen)
+                #masked_distance = countMaskedTargetDistance(drone, target, queen)
+                if verbosity: print(f"    Drone: {drone} Distance to target: {distance}, isRelevant: {isDroneRelevant}")
+                if distance < best_distance and isDroneRelevant:
+                    best_distance = distance
+                    father_drone = drone
         if verbosity: print(f"Chosen drone: {father_drone}, Reset:{purify_queen}, Is pure: {is_queen_pure}")
         #user input     
         '''for id, drone in enumerate(population):
@@ -143,8 +184,8 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
         queen = new_queen
     return (i, countADrones, countBDrones)
 
-Combinations_numberOfRetainedGenes = [1]
-Combinations_numberOfSuperGenes = [1,2,3,4,5,6,7,8,9,10,11]
+Combinations_numberOfRetainedGenes = list(range(1,7))
+Combinations_numberOfSuperGenes = list(range(1,12))
 Combinations_fertility = [1]
 
 def simulate_quality_breeding_with_params(numberOfRetainedGenes, numberOfSuperGenes, fertility):
@@ -152,7 +193,7 @@ def simulate_quality_breeding_with_params(numberOfRetainedGenes, numberOfSuperGe
     generations = []
     dronesA = []
     dronesB = []
-    for i in range(1000):
+    for i in range(100):
         (numberOfGenerations, countADrones, countBDrones) = simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertility)
         generations.append(numberOfGenerations)
         dronesA.append(countADrones)

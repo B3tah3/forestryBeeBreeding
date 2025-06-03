@@ -1,0 +1,432 @@
+Genes: 1 / 1 | Fertility: 4
+Average generations to target: 9.014, Median generations: 8
+Average A drone consumption: 2.618, Max: 13, std: 1.8415937302965242, 5*std+avg: 11.82596865148262
+Average B drone consumption: 1.073, Max: 3, std: 0.2715598363984349, 5*std+avg: 2.4307991819921746
+Genes: 1 / 1 | Fertility: 3
+Average generations to target: 10.115, Median generations: 9
+Average A drone consumption: 3.051, Max: 17, std: 2.1482583676117764, 5*std+avg: 13.792291838058881
+Average B drone consumption: 1.165, Max: 3, std: 0.3948809072757645, 5*std+avg: 3.1394045363788226
+Genes: 1 / 1 | Fertility: 2
+Average generations to target: 14.313, Median generations: 13
+Average A drone consumption: 4.339, Max: 23, std: 2.8234820791092425, 5*std+avg: 18.456410395546214
+Average B drone consumption: 1.378, Max: 4, std: 0.5995627368970452, 5*std+avg: 4.375813684485226
+Genes: 1 / 2 | Fertility: 4
+Average generations to target: 10.028, Median generations: 9
+Average A drone consumption: 3.482, Max: 15, std: 2.074603571764972, 5*std+avg: 13.855017858824858
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 2 | Fertility: 3
+Average generations to target: 11.768, Median generations: 11
+Average A drone consumption: 3.992, Max: 18, std: 2.5048373620277644, 5*std+avg: 16.516186810138823
+Average B drone consumption: 1.001, Max: 2, std: 0.03162277660168379, 5*std+avg: 1.1591138830084189
+Genes: 1 / 2 | Fertility: 2
+Average generations to target: 16.078, Median generations: 14
+Average A drone consumption: 5.557, Max: 23, std: 3.3716641468448665, 5*std+avg: 22.41532073422433
+Average B drone consumption: 1.021, Max: 2, std: 0.14345584540052586, 5*std+avg: 1.7382792270026293
+Genes: 1 / 3 | Fertility: 4
+Average generations to target: 11.423, Median generations: 11
+Average A drone consumption: 4.448, Max: 18, std: 2.5713630447503726, 5*std+avg: 17.304815223751863
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 3 | Fertility: 3
+Average generations to target: 12.679, Median generations: 12
+Average A drone consumption: 4.828, Max: 20, std: 2.704760938000202, 5*std+avg: 18.35180469000101
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 3 | Fertility: 2
+Average generations to target: 17.337, Median generations: 15
+Average A drone consumption: 6.472, Max: 31, std: 3.9332793807059634, 5*std+avg: 26.138396903529816
+Average B drone consumption: 1.01, Max: 2, std: 0.0995485304256668, 5*std+avg: 1.507742652128334
+Genes: 1 / 4 | Fertility: 4
+Average generations to target: 11.994, Median generations: 11
+Average A drone consumption: 4.932, Max: 16, std: 2.640141349690646, 5*std+avg: 18.13270674845323
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 4 | Fertility: 3
+Average generations to target: 13.62, Median generations: 13
+Average A drone consumption: 5.497, Max: 20, std: 2.9079971539613734, 5*std+avg: 20.03698576980687
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 4 | Fertility: 2
+Average generations to target: 18.358, Median generations: 17
+Average A drone consumption: 7.533, Max: 40, std: 4.428150801352582, 5*std+avg: 29.673754006762913
+Average B drone consumption: 1.012, Max: 2, std: 0.10893974420691407, 5*std+avg: 1.5566987210345704
+Genes: 1 / 5 | Fertility: 4
+Average generations to target: 12.746, Median generations: 12
+Average A drone consumption: 5.641, Max: 20, std: 2.902851278578623, 5*std+avg: 20.155256392893115
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 5 | Fertility: 3
+Average generations to target: 14.549, Median generations: 13
+Average A drone consumption: 6.221, Max: 19, std: 3.0491730774845265, 5*std+avg: 21.466865387422633
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 5 | Fertility: 2
+Average generations to target: 19.717, Median generations: 18
+Average A drone consumption: 8.438, Max: 38, std: 4.731653468349573, 5*std+avg: 32.09626734174787
+Average B drone consumption: 1.022, Max: 2, std: 0.1467567291047928, 5*std+avg: 1.755783645523964
+Genes: 1 / 6 | Fertility: 4
+Average generations to target: 13.083, Median generations: 12
+Average A drone consumption: 5.962, Max: 27, std: 2.8859807492228504, 5*std+avg: 20.391903746114252
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 6 | Fertility: 3
+Average generations to target: 15.684, Median generations: 15
+Average A drone consumption: 6.99, Max: 29, std: 3.6454340193163817, 5*std+avg: 25.21717009658191
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 6 | Fertility: 2
+Average generations to target: 20.092, Median generations: 18
+Average A drone consumption: 8.869, Max: 38, std: 4.853183737753228, 5*std+avg: 33.134918688766135
+Average B drone consumption: 1.017, Max: 2, std: 0.1293357171384909, 5*std+avg: 1.6636785856924545
+Genes: 1 / 7 | Fertility: 4
+Average generations to target: 14.049, Median generations: 13
+Average A drone consumption: 6.569, Max: 20, std: 3.060163983123062, 5*std+avg: 21.86981991561531
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 7 | Fertility: 3
+Average generations to target: 15.905, Median generations: 15
+Average A drone consumption: 7.369, Max: 22, std: 3.5124316614243436, 5*std+avg: 24.931158307121716
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 7 | Fertility: 2
+Average generations to target: 21.308, Median generations: 19
+Average A drone consumption: 9.787, Max: 47, std: 5.463101360626259, 5*std+avg: 37.10250680313129
+Average B drone consumption: 1.015, Max: 2, std: 0.12161327966052798, 5*std+avg: 1.6230663983026399
+Genes: 1 / 8 | Fertility: 4
+Average generations to target: 14.376, Median generations: 14
+Average A drone consumption: 6.809, Max: 22, std: 3.144902130338782, 5*std+avg: 22.53351065169391
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 8 | Fertility: 3
+Average generations to target: 16.429, Median generations: 15
+Average A drone consumption: 7.957, Max: 23, std: 3.9100434063369987, 5*std+avg: 27.507217031684995
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 8 | Fertility: 2
+Average generations to target: 21.182, Median generations: 20
+Average A drone consumption: 9.991, Max: 67, std: 5.381810372252341, 5*std+avg: 36.9000518612617
+Average B drone consumption: 1.006, Max: 2, std: 0.07726558075864033, 5*std+avg: 1.3923279037932017
+Genes: 1 / 9 | Fertility: 4
+Average generations to target: 14.89, Median generations: 14
+Average A drone consumption: 7.281, Max: 22, std: 3.2849398517826516, 5*std+avg: 23.705699258913256
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 9 | Fertility: 3
+Average generations to target: 16.762, Median generations: 16
+Average A drone consumption: 8.124, Max: 32, std: 3.9852862515139997, 5*std+avg: 28.050431257569997
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 9 | Fertility: 2
+Average generations to target: 22.663, Median generations: 21
+Average A drone consumption: 10.861, Max: 48, std: 5.917998116061013, 5*std+avg: 40.45099058030507
+Average B drone consumption: 1.015, Max: 2, std: 0.12161327966052798, 5*std+avg: 1.6230663983026399
+Genes: 1 / 10 | Fertility: 4
+Average generations to target: 15.487, Median generations: 15
+Average A drone consumption: 7.81, Max: 31, std: 3.5364397925606488, 5*std+avg: 25.492198962803243
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 10 | Fertility: 3
+Average generations to target: 17.337, Median generations: 17
+Average A drone consumption: 8.775, Max: 32, std: 4.164098307522856, 5*std+avg: 29.59549153761428
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 10 | Fertility: 2
+Average generations to target: 22.872, Median generations: 21
+Average A drone consumption: 11.159, Max: 48, std: 6.05230116148803, 5*std+avg: 41.42050580744015
+Average B drone consumption: 1.011, Max: 2, std: 0.10435463521037237, 5*std+avg: 1.5327731760518617
+Genes: 1 / 11 | Fertility: 4
+Average generations to target: 15.843, Median generations: 15
+Average A drone consumption: 8.083, Max: 22, std: 3.480837144600021, 5*std+avg: 25.487185723000103
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 11 | Fertility: 3
+Average generations to target: 17.749, Median generations: 17
+Average A drone consumption: 8.917, Max: 31, std: 4.213533536696351, 5*std+avg: 29.98466768348176
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 1 / 11 | Fertility: 2
+Average generations to target: 23.217, Median generations: 21
+Average A drone consumption: 11.521, Max: 43, std: 6.179137540202576, 5*std+avg: 42.416687701012876
+Average B drone consumption: 1.018, Max: 2, std: 0.13301764429463367, 5*std+avg: 1.6830882214731684
+Genes: 2 / 2 | Fertility: 4
+Average generations to target: 16.024, Median generations: 15
+Average A drone consumption: 4.036, Max: 23, std: 2.6217508610807356, 5*std+avg: 17.14475430540368
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 2 | Fertility: 3
+Average generations to target: 19.391, Median generations: 18
+Average A drone consumption: 4.853, Max: 30, std: 3.1704009907963444, 5*std+avg: 20.70500495398172
+Average B drone consumption: 1.001, Max: 2, std: 0.03162277660168379, 5*std+avg: 1.1591138830084189
+Genes: 2 / 2 | Fertility: 2
+Average generations to target: 28.067, Median generations: 26
+Average A drone consumption: 6.642, Max: 31, std: 4.1829813928982915, 5*std+avg: 27.556906964491457
+Average B drone consumption: 1.034, Max: 2, std: 0.18131981931624816, 5*std+avg: 1.940599096581241
+Genes: 2 / 3 | Fertility: 4
+Average generations to target: 18.01, Median generations: 17
+Average A drone consumption: 5.234, Max: 20, std: 3.0431077050450424, 5*std+avg: 20.44953852522521
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 3 | Fertility: 3
+Average generations to target: 21.513, Median generations: 20
+Average A drone consumption: 6.191, Max: 21, std: 3.5129560002738236, 5*std+avg: 23.755780001369118
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 3 | Fertility: 2
+Average generations to target: 32.089, Median generations: 29
+Average A drone consumption: 8.759, Max: 34, std: 5.241984108846324, 5*std+avg: 34.96892054423162
+Average B drone consumption: 1.041, Max: 3, std: 0.21298911794822842, 5*std+avg: 2.1059455897411423
+Genes: 2 / 4 | Fertility: 4
+Average generations to target: 19.583, Median generations: 18
+Average A drone consumption: 6.063, Max: 27, std: 3.43931095713369, 5*std+avg: 23.25955478566845
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 4 | Fertility: 3
+Average generations to target: 24.205, Median generations: 23
+Average A drone consumption: 7.314, Max: 26, std: 4.13067385137903, 5*std+avg: 27.96736925689515
+Average B drone consumption: 1.001, Max: 2, std: 0.03162277660168379, 5*std+avg: 1.1591138830084189
+Genes: 2 / 4 | Fertility: 2
+Average generations to target: 33.998, Median generations: 32
+Average A drone consumption: 9.881, Max: 38, std: 5.694318595254771, 5*std+avg: 38.352592976273854
+Average B drone consumption: 1.025, Max: 2, std: 0.15620307103062794, 5*std+avg: 1.8060153551531397
+Genes: 2 / 5 | Fertility: 4
+Average generations to target: 21.608, Median generations: 20
+Average A drone consumption: 7.006, Max: 23, std: 3.701305670120162, 5*std+avg: 25.51252835060081
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 5 | Fertility: 3
+Average generations to target: 25.289, Median generations: 24
+Average A drone consumption: 7.974, Max: 29, std: 4.4655643837330645, 5*std+avg: 30.301821918665322
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 5 | Fertility: 2
+Average generations to target: 37.966, Median generations: 35
+Average A drone consumption: 11.302, Max: 43, std: 6.209134347825738, 5*std+avg: 42.347671739128685
+Average B drone consumption: 1.03, Max: 2, std: 0.17067257872642908, 5*std+avg: 1.8833628936321454
+Genes: 2 / 6 | Fertility: 4
+Average generations to target: 22.914, Median generations: 22
+Average A drone consumption: 7.489, Max: 26, std: 3.724479930238684, 5*std+avg: 26.11139965119342
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 6 | Fertility: 3
+Average generations to target: 28.366, Median generations: 27
+Average A drone consumption: 9.2, Max: 37, std: 4.732271589247007, 5*std+avg: 32.86135794623503
+Average B drone consumption: 1.001, Max: 2, std: 0.03162277660168379, 5*std+avg: 1.1591138830084189
+Genes: 2 / 6 | Fertility: 2
+Average generations to target: 39.182, Median generations: 36
+Average A drone consumption: 12.227, Max: 48, std: 6.5300928870203, 5*std+avg: 44.8774644351015
+Average B drone consumption: 1.02, Max: 2, std: 0.14007005254378832, 5*std+avg: 1.7203502627189415
+Genes: 2 / 7 | Fertility: 4
+Average generations to target: 23.979, Median generations: 23
+Average A drone consumption: 8.22, Max: 25, std: 3.911636601334651, 5*std+avg: 27.778183006673252
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 7 | Fertility: 3
+Average generations to target: 28.293, Median generations: 27
+Average A drone consumption: 9.519, Max: 36, std: 4.875593339318858, 5*std+avg: 33.89696669659429
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 7 | Fertility: 2
+Average generations to target: 40.69, Median generations: 38
+Average A drone consumption: 13.195, Max: 50, std: 7.037364527967803, 5*std+avg: 48.381822639839015
+Average B drone consumption: 1.029, Max: 2, std: 0.1678904023081343, 5*std+avg: 1.8684520115406713
+Genes: 2 / 8 | Fertility: 4
+Average generations to target: 25.667, Median generations: 25
+Average A drone consumption: 8.937, Max: 30, std: 4.311568232165719, 5*std+avg: 30.494841160828592
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 8 | Fertility: 3
+Average generations to target: 30.419, Median generations: 29
+Average A drone consumption: 10.416, Max: 31, std: 5.042456779226805, 5*std+avg: 35.62828389613402
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 8 | Fertility: 2
+Average generations to target: 44.084, Median generations: 42
+Average A drone consumption: 14.517, Max: 46, std: 7.264604977938269, 5*std+avg: 50.84002488969135
+Average B drone consumption: 1.032, Max: 2, std: 0.17608806605504818, 5*std+avg: 1.9124403302752409
+Genes: 2 / 9 | Fertility: 4
+Average generations to target: 26.124, Median generations: 26
+Average A drone consumption: 9.628, Max: 28, std: 4.266828075025032, 5*std+avg: 30.96214037512516
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 9 | Fertility: 3
+Average generations to target: 30.529, Median generations: 29
+Average A drone consumption: 10.818, Max: 48, std: 5.498100135965614, 5*std+avg: 38.30850067982807
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 9 | Fertility: 2
+Average generations to target: 44.149, Median generations: 41
+Average A drone consumption: 15.198, Max: 59, std: 7.9527380217156685, 5*std+avg: 54.961690108578345
+Average B drone consumption: 1.029, Max: 2, std: 0.1678904023081343, 5*std+avg: 1.8684520115406713
+Genes: 2 / 10 | Fertility: 4
+Average generations to target: 27.214, Median generations: 26
+Average A drone consumption: 10.385, Max: 33, std: 4.6325193183877, 5*std+avg: 33.5475965919385
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 10 | Fertility: 3
+Average generations to target: 32.679, Median generations: 32
+Average A drone consumption: 12.002, Max: 36, std: 5.593503667942239, 5*std+avg: 39.9695183397112
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 2 / 10 | Fertility: 2
+Average generations to target: 46.048, Median generations: 42
+Average A drone consumption: 16.159, Max: 55, std: 8.380092179978986, 5*std+avg: 58.05946089989493
+Average B drone consumption: 1.031, Max: 2, std: 0.17340435135563662, 5*std+avg: 1.898021756778183
+Genes: 3 / 3 | Fertility: 4
+Average generations to target: 25.412, Median generations: 24
+Average A drone consumption: 6.193, Max: 26, std: 3.647609635919948, 5*std+avg: 24.431048179599742
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 3 | Fertility: 3
+Average generations to target: 31.1, Median generations: 30
+Average A drone consumption: 7.542, Max: 33, std: 4.523792734056314, 5*std+avg: 30.160963670281568
+Average B drone consumption: 1.001, Max: 2, std: 0.03162277660168379, 5*std+avg: 1.1591138830084189
+Genes: 3 / 3 | Fertility: 2
+Average generations to target: 45.554, Median generations: 43
+Average A drone consumption: 10.526, Max: 43, std: 6.314522721251164, 5*std+avg: 42.098613606255824
+Average B drone consumption: 1.128, Max: 4, std: 0.3489093546148308, 5*std+avg: 2.872546773074154
+Genes: 3 / 4 | Fertility: 4
+Average generations to target: 28.27, Median generations: 27
+Average A drone consumption: 7.223, Max: 24, std: 3.9743007015154337, 5*std+avg: 27.094503507577166
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 4 | Fertility: 3
+Average generations to target: 34.465, Median generations: 32
+Average A drone consumption: 8.559, Max: 29, std: 4.889010270128447, 5*std+avg: 33.00405135064223
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 4 | Fertility: 2
+Average generations to target: 52.581, Median generations: 48
+Average A drone consumption: 12.115, Max: 53, std: 6.886886394024821, 5*std+avg: 46.54943197012411
+Average B drone consumption: 1.051, Max: 2, std: 0.22010780869257557, 5*std+avg: 2.151539043462878
+Genes: 3 / 5 | Fertility: 4
+Average generations to target: 31.778, Median generations: 30
+Average A drone consumption: 8.389, Max: 32, std: 4.493759325205665, 5*std+avg: 30.857796626028325
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 5 | Fertility: 3
+Average generations to target: 38.503, Median generations: 37
+Average A drone consumption: 9.818, Max: 42, std: 5.143669248049814, 5*std+avg: 35.53634624024907
+Average B drone consumption: 1.001, Max: 2, std: 0.03162277660168379, 5*std+avg: 1.1591138830084189
+Genes: 3 / 5 | Fertility: 2
+Average generations to target: 57.673, Median generations: 55
+Average A drone consumption: 13.753, Max: 49, std: 7.134906999947364, 5*std+avg: 49.42753499973682
+Average B drone consumption: 1.042, Max: 2, std: 0.20068950215762726, 5*std+avg: 2.0454475107881365
+Genes: 3 / 6 | Fertility: 4
+Average generations to target: 33.497, Median generations: 33
+Average A drone consumption: 9.364, Max: 33, std: 4.88890636087514, 5*std+avg: 33.808531804375704
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 6 | Fertility: 3
+Average generations to target: 41.111, Median generations: 40
+Average A drone consumption: 10.983, Max: 38, std: 5.4297507487170344, 5*std+avg: 38.13175374358517
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 6 | Fertility: 2
+Average generations to target: 61.427, Median generations: 57
+Average A drone consumption: 15.653, Max: 66, std: 8.156293037656022, 5*std+avg: 56.43446518828011
+Average B drone consumption: 1.044, Max: 2, std: 0.20519772441746548, 5*std+avg: 2.0699886220873274
+Genes: 3 / 7 | Fertility: 4
+Average generations to target: 35.985, Median generations: 35
+Average A drone consumption: 10.296, Max: 38, std: 5.18123819460457, 5*std+avg: 36.20219097302285
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 7 | Fertility: 3
+Average generations to target: 43.849, Median generations: 41
+Average A drone consumption: 11.941, Max: 38, std: 5.995119720277525, 5*std+avg: 41.916598601387626
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 7 | Fertility: 2
+Average generations to target: 64.721, Median generations: 62
+Average A drone consumption: 16.789, Max: 53, std: 8.372728443081238, 5*std+avg: 58.65264221540619
+Average B drone consumption: 1.036, Max: 2, std: 0.18638331132035063, 5*std+avg: 1.9679165566017531
+Genes: 3 / 8 | Fertility: 4
+Average generations to target: 36.787, Median generations: 36
+Average A drone consumption: 10.888, Max: 34, std: 5.208702965862671, 5*std+avg: 36.93151482931336
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 8 | Fertility: 3
+Average generations to target: 45.575, Median generations: 44
+Average A drone consumption: 13.305, Max: 43, std: 6.3171101684932545, 5*std+avg: 44.89055084246627
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 8 | Fertility: 2
+Average generations to target: 65.974, Median generations: 63
+Average A drone consumption: 17.769, Max: 53, std: 8.664682089708526, 5*std+avg: 61.09241044854263
+Average B drone consumption: 1.025, Max: 2, std: 0.15620307103062794, 5*std+avg: 1.8060153551531397
+Genes: 3 / 9 | Fertility: 4
+Average generations to target: 38.713, Median generations: 38
+Average A drone consumption: 11.848, Max: 44, std: 5.707667954031092, 5*std+avg: 40.38633977015546
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 3 / 9 | Fertility: 3
+Average generations to target: 45.815, Median generations: 45
+Average A drone consumption: 13.507, Max: 37, std: 6.394594736325504, 5*std+avg: 45.47997368162752
+Average B drone consumption: 1.001, Max: 2, std: 0.03162277660168379, 5*std+avg: 1.1591138830084189
+Genes: 3 / 9 | Fertility: 2
+Average generations to target: 68.164, Median generations: 66
+Average A drone consumption: 19.482, Max: 62, std: 8.915894187862996, 5*std+avg: 64.06147093931497
+Average B drone consumption: 1.045, Max: 2, std: 0.20740785428237288, 5*std+avg: 2.0820392714118645
+Genes: 4 / 4 | Fertility: 4
+Average generations to target: 38.22, Median generations: 37
+Average A drone consumption: 8.383, Max: 37, std: 4.932204135844099, 5*std+avg: 33.044020679220495
+Average B drone consumption: 1.247, Max: 3, std: 0.43379624154570445, 5*std+avg: 3.4159812077285228
+Genes: 4 / 4 | Fertility: 3
+Average generations to target: 47.804, Median generations: 46
+Average A drone consumption: 10.435, Max: 39, std: 5.874545538617033, 5*std+avg: 39.80772769308517
+Average B drone consumption: 1.435, Max: 3, std: 0.5099363048803596, 5*std+avg: 3.984681524401798
+Genes: 4 / 4 | Fertility: 2
+Average generations to target: 72.54, Median generations: 69
+Average A drone consumption: 15.489, Max: 52, std: 7.887337262288781, 5*std+avg: 54.92568631144391
+Average B drone consumption: 1.781, Max: 4, std: 0.5150769887155747, 5*std+avg: 4.356384943577874
+Genes: 4 / 5 | Fertility: 4
+Average generations to target: 40.411, Median generations: 39
+Average A drone consumption: 9.391, Max: 31, std: 4.900217457535036, 5*std+avg: 33.89208728767518
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 4 / 5 | Fertility: 3
+Average generations to target: 51.215, Median generations: 49
+Average A drone consumption: 11.691, Max: 49, std: 5.996121452445111, 5*std+avg: 41.67160726222556
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 4 / 5 | Fertility: 2
+Average generations to target: 76.655, Median generations: 74
+Average A drone consumption: 16.196, Max: 57, std: 8.28783881794719, 5*std+avg: 57.63519408973595
+Average B drone consumption: 1.065, Max: 3, std: 0.2546366820390178, 5*std+avg: 2.338183410195089
+Genes: 4 / 6 | Fertility: 4
+Average generations to target: 44.102, Median generations: 43
+Average A drone consumption: 10.363, Max: 37, std: 5.186147619102943, 5*std+avg: 36.29373809551471
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 4 / 6 | Fertility: 3
+Average generations to target: 53.944, Median generations: 51
+Average A drone consumption: 12.544, Max: 42, std: 6.26508701578161, 5*std+avg: 43.869435078908054
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 4 / 6 | Fertility: 2
+Average generations to target: 81.778, Median generations: 79
+Average A drone consumption: 17.744, Max: 57, std: 9.178600694589056, 5*std+avg: 63.63700347294528
+Average B drone consumption: 1.045, Max: 2, std: 0.20740785428237288, 5*std+avg: 2.0820392714118645
+Genes: 4 / 7 | Fertility: 4
+Average generations to target: 48.202, Median generations: 47
+Average A drone consumption: 12.228, Max: 44, std: 6.209877501092802, 5*std+avg: 43.277387505464006
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 4 / 7 | Fertility: 3
+Average generations to target: 57.096, Median generations: 55
+Average A drone consumption: 13.749, Max: 43, std: 6.606182001779897, 5*std+avg: 46.779910008899485
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 4 / 7 | Fertility: 2
+Average generations to target: 90.015, Median generations: 87
+Average A drone consumption: 20.714, Max: 67, std: 9.80225934610426, 5*std+avg: 69.7252967305213
+Average B drone consumption: 1.066, Max: 3, std: 0.25240385834552476, 5*std+avg: 2.3280192917276237
+Genes: 4 / 8 | Fertility: 4
+Average generations to target: 49.277, Median generations: 48
+Average A drone consumption: 12.856, Max: 39, std: 6.012271734661651, 5*std+avg: 42.91735867330826
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 4 / 8 | Fertility: 3
+Average generations to target: 59.548, Median generations: 58
+Average A drone consumption: 15.026, Max: 49, std: 7.181566604780526, 5*std+avg: 50.933833023902636
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 4 / 8 | Fertility: 2
+Average generations to target: 90.96, Median generations: 87
+Average A drone consumption: 21.073, Max: 64, std: 9.478159447197884, 5*std+avg: 68.46379723598942
+Average B drone consumption: 1.056, Max: 3, std: 0.23434785878885028, 5*std+avg: 2.2277392939442517
+Genes: 5 / 5 | Fertility: 4
+Average generations to target: 51.198, Median generations: 50
+Average A drone consumption: 10.994, Max: 38, std: 5.6805133775242735, 5*std+avg: 39.39656688762137
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 5 / 5 | Fertility: 3
+Average generations to target: 63.473, Median generations: 62
+Average A drone consumption: 12.853, Max: 42, std: 6.398932515454225, 5*std+avg: 44.84766257727113
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 5 / 5 | Fertility: 2
+Average generations to target: 98.214, Median generations: 95
+Average A drone consumption: 18.539, Max: 63, std: 9.511200867500483, 5*std+avg: 66.09500433750242
+Average B drone consumption: 1.126, Max: 3, std: 0.3438636971857341, 5*std+avg: 2.8453184859286704
+Genes: 5 / 6 | Fertility: 4
+Average generations to target: 54.635, Median generations: 54
+Average A drone consumption: 11.923, Max: 37, std: 5.834647728364936, 5*std+avg: 41.09623864182468
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 5 / 6 | Fertility: 3
+Average generations to target: 68.593, Median generations: 67
+Average A drone consumption: 14.818, Max: 46, std: 7.147304384168899, 5*std+avg: 50.55452192084449
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 5 / 6 | Fertility: 2
+Average generations to target: 105.515, Median generations: 101
+Average A drone consumption: 20.739, Max: 71, std: 9.588681964786497, 5*std+avg: 68.68240982393249
+Average B drone consumption: 1.074, Max: 3, std: 0.2656964331612199, 5*std+avg: 2.4024821658060995
+Genes: 5 / 7 | Fertility: 4
+Average generations to target: 59.352, Median generations: 58
+Average A drone consumption: 13.664, Max: 40, std: 6.404382883629001, 5*std+avg: 45.685914418145
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 5 / 7 | Fertility: 3
+Average generations to target: 72.357, Median generations: 70
+Average A drone consumption: 16.13, Max: 48, std: 7.391869840557241, 5*std+avg: 53.08934920278621
+Average B drone consumption: 1.0, Max: 1, std: 0.0, 5*std+avg: 1.0
+Genes: 5 / 7 | Fertility: 2
+Average generations to target: 112.37, Median generations: 108
+Average A drone consumption: 22.416, Max: 79, std: 10.577089335862624, 5*std+avg: 75.30144667931312
+Average B drone consumption: 1.079, Max: 3, std: 0.27719277738757164, 5*std+avg: 2.4649638869378583
+Genes: 6 / 6 | Fertility: 4
+Average generations to target: 68.469, Median generations: 67
+Average A drone consumption: 14.931, Max: 47, std: 7.504302336230434, 5*std+avg: 52.45251168115217
+Average B drone consumption: 1.568, Max: 3, std: 0.5016249870447321, 5*std+avg: 4.07612493522366
+Genes: 6 / 6 | Fertility: 3
+Average generations to target: 84.794, Median generations: 82
+Average A drone consumption: 18.239, Max: 56, std: 8.494470850796713, 5*std+avg: 60.71135425398357
+Average B drone consumption: 1.746, Max: 3, std: 0.4855097524455299, 5*std+avg: 4.17354876222765
+Genes: 6 / 6 | Fertility: 2
+Average generations to target: 127.534, Median generations: 124
+Average A drone consumption: 25.106, Max: 65, std: 11.012994599565099, 5*std+avg: 80.17097299782549
+Average B drone consumption: 2.033, Max: 5, std: 0.5120284886343466, 5*std+avg: 4.5931424431717325
