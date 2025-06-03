@@ -55,21 +55,37 @@ Building between these y values makes sure you can reach Warm with 4 heaters. To
 |5 Heater|122, 10|121, 48|119, 86|Hot
 |        |   Arid| Normal|   Damp|
 
-![Temperature Controlled Input](images/ClimateControlInput.png)
+#### Redstone Control Circuit
 
-With a redstone power level input panel, we can sucessivly toggle the energy conduits for the heaters and the pressurized fluid conduits for the water.
+|Manually controlled|OpenComputers controlled|
+|-|-|
+|![Temperature Controlled Input](images/ClimateControlInput.png)|![Temperature Controller Computer](images/redstoneControllerLabeled.png)|
+
+With a redstone power level input panel, we can sucessivly toggle the energy conduits for the heaters and the pressurized fluid conduits for the water. Note that if the dust has redstone power 1, the conduits are off. Here, the green lever is flicked to select normal temperature, which causes the light blue and green heaters to turn on. The yellow heaters have a dust power 1, so are not yet triggered.
 To also support nether bees, add an electrical stimulator with a basic circuit board with one blazing electron tube.
-To automatically control the daylight, build a block swapper with and alveary lighting and unlighting. The lighting is needed at night for diurnal bees, and the unlighting during day for nocturnal bees. Use a daylight sensor to toggle the block swapper (untested). Or build the setup in a personal dimension without day/night cycle and only use the unlighting.
+
+#### Light Controlling Block Swapper
+|||
+|-|-|
+|![Block Swapper](images/blockSwapper.PNG)|![Daytime Sensor](images/blockSwapperRedstone.PNG)|
+
+To automatically control the daylight, build a block swapper with and alveary lighting and unlighting. The lighting is needed at night for diurnal bees, and the unlighting during day for nocturnal bees. Use a Light sensor to toggle the block swapper. Or build the setup in a personal dimension without day/night cycle and only use the unlighting.
 
 ## Chapter 2: Trait Breeding Program
 
 The trait breeding program transfers traits (genes) from one bee to another. These traits can be any independent genome, including species, production speed, lifespan and others. Only climate is dependent on the species and cannot be changed independently. We refer to the colony that donates more traits as the super bee.
 
 ### How to run the program
+
+|||
+|-|-|
+|![Chest Definitions](images/ChestDefinitions.png)|![Scanner Routing](images/scannerRouting.PNG)|
+
 Put some drones from each colony into the input drawer, and any princess (preferably pristine, species and traits don't matter) into the storage chest. Start the program "beeBreeding". The program asks which trait you would like to have for each trait that is not the same. Type 'A' or 'B' to select them, or hit just enter to ingore that trait. Ingoring a trait can result in the princess & drone having a mix of both traits, but simply inbreeding the result should eventually flip into either one and make all drones stack again. The programm should start automatically after questioning.
 
-### How many generations will the program take?
-There is no upper limit on how many generations the program will take. You can always get unlucky and not make breeding progress. But with high fertility and the right settings, the program typically needs 10-40 generations. Simulation results can be found in results3.txt.
+### How many generations will the program take to finish?
+There is no upper limit on how many generations the program will take. You can always get unlucky and not make breeding progress. But with high fertility and the right settings, the program typically needs 10-40 generations. When using Lifespan shortening (Oblivion Frame, Maddening Frame of Frenzy, Obsidian Electron Tubes), one Bee tick will take 27.5s,
+and using 5 LV Scanner in parallel will take another 25s. So one generation will take around one minute.
 
 #### Median Generation Count for 1 non-super trait, n super-traits, depending on Fertility
 ![Median Generations](images/medianGenerationsFertility.png)
@@ -86,7 +102,7 @@ sneak preview of new algorithm performance:
 
 
 ### How many drones should you provide?
-You will need more of the drones you want to take more traits from. When taking exactly one trait from the other drones, use at least as many drones as shown in the plots below. If you take more In summary, unless when dealing with Fertility 1, using 50+ super drones and 5+ of the others will be enough.
+You will need more of the drones you want to take more traits from. When taking exactly one trait from the other drones, use at least as many drones as shown in the plots below. In summary, unless when dealing with Fertility 1, using 50+ super drones and 5+ of the others will be enough.
 
 #### Expected Drone consuptions for 1 non-super trait, n super-traits, depending on Fertility, 99% Percentile
 |||
