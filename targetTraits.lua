@@ -1,6 +1,8 @@
 IO = require("io")
 TargetTraits = {}
 function TargetTraits.QueryTargetStats(InputDrawer)
+	TargetTraits.A = {}
+	TargetTraits.B = {}
 	--let user decide target traits
 	TypeOneDrones = InputDrawer[2]
 	TypeTwoDrones = InputDrawer[3]
@@ -53,7 +55,25 @@ function TargetTraits.QueryTargetStats(InputDrawer)
 	--check if more type B than A traits have been chose
 	TargetTraits.ASlot = 3
 	TargetTraits.BSlot = 4
-	if #TargetTraits.B > #TargetTraits.A then
+	local btraits = 0
+	local atraits = 0
+	print("Traits A")
+	print("-------------------------")
+	for k, v in pairs(TargetTraits.A) do
+		print(k, v)
+		atraits = atraits + 1
+	end
+	print("Traits B")
+	print("-------------------------")
+	for k, v in pairs(TargetTraits.B) do
+		print(k, v)
+		btraits = btraits + 1
+	end
+	print("Btraits", btraits, "Ataits", atraits)
+	if btraits > atraits then
+		print(
+			"Debugger entered if statement. For more information please buy the pro version of lua debugger for only 9.99 per month"
+		)
 		local swap = TargetTraits.A
 		TargetTraits.A = TargetTraits.B
 		TargetTraits.B = swap

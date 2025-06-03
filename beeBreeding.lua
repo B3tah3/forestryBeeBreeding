@@ -3,14 +3,11 @@ Component = require("component")
 Climate = require("climate")
 TargetTraits = require("targetTraits")
 Utils = require("utils")
-
+Config = require("config")
 --TargetTrait = {effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=20,temperatureTolerance="NONE",fertility=2,humidityTolerance="NONE",speed=0.30000001192093,tolerantFlyer=false,flowerProvider="flowersVanilla",caveDwelling=false,nocturnal=false}
 
 -- create a salt drone with flowers
-TargetTraits.A = { flowerProvider = "flowersVanilla" }
 --TargetTraitsB = {species={temperature="Warm",humidity="Arid",name="Salt",uid="gregtech.bee.speciesSalty"}}
-TargetTraits.B =
-	{ species = { temperature = "Icy", humidity = "Arid", name = "Naquadah", uid = "gregtech.bee.speciesNaquadah" } }
 
 function DeepEquals(a, b, visited)
 	if a == b then
@@ -145,7 +142,7 @@ function Iterate()
 				end
 			end
 			Result = Component.transposer.transferItem(Config.Storage, Config.Config, 1, BestDroneIndex + 1, 2)
-			print("[DEBUG]:    Moved Drone", Result)
+			print("[DEBUG]:    Moved Drone", Result, "From Slot", BestDroneIndex + 1)
 		elseif Princess then
 			--choose pure A drone
 			--move pure a drone to output chest
@@ -173,7 +170,7 @@ function Main()
 		print("---------------------------------")
 		i = i + 1
 		MakeIterations = Iterate()
-		os.sleep(35)
+		os.sleep(40)
 	end
 end
 --[[
