@@ -23,7 +23,7 @@ def plot_results(file_path):
     #change to read four lines at a time
     for i in range(0, len(lines), 4):
         fourLines = ''.join(lines[i:i+4])
-        match = re.search(r'Genes: 1 / (\d+) \| Fertility: (\d+)', fourLines)
+        match = re.search(r'Genes: 2 / (\d+) \| Fertility: (\d+)', fourLines)
         if match:
             fertility = int(match.group(2))
             super_gene = int(match.group(1))
@@ -56,4 +56,4 @@ def plot_results(file_path):
     
 
 if __name__ == "__main__":
-    plot_results('results8.txt')
+    plot_results('simulations/results_multiAlg_1ksamples.txt')

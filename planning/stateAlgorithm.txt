@@ -14,6 +14,22 @@ State 2: Has target gene, but also still others
 
     test options for speed (prefer 1)
     
+Extension of State algorithm for doing 2,n
+state 0: pure A: find best drone
+state 1: ALL target genes lost, some a impure: have to reset with pure a
+state 2: some target genes lost: ?
+state 3: has all target genes, a impure: ?
+state 4: 
+
+trash drones: AABA
+good drones: BAAA
+maybe drones: 
+target: (BBAA)
+states:
+0: AAAA
+1: AABA
+2: 
+
 
 Gene:
     Spezies                 
@@ -21,7 +37,7 @@ Gene:
     Terretorium / Gebiet
     Lebensdauer
     Blume
-    Fruchbarkeit
+    Fruchtbarkeit
     Geschwindigkeit
     Bestäubung (Bäume)
 
