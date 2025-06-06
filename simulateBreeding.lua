@@ -1,8 +1,8 @@
-Sides = require("sides")
-Component = require("component")
-Climate = require("climate")
+--Sides = require("sides")
+--Climate = require("climate")
 TargetTraits = require("targetTraits")
-Utils = require("utils")
+--Utils = require("utils")
+Component = require("fakeComponent")
 Config = require("config")
 
 function DeepEquals(a, b, visited)
@@ -80,22 +80,18 @@ function MeasureDroneDistanceToTarget(bee)
 	return Distance
 end
 
---function
-
 function FindPrincessAndTrashDrones(BeeChest)
 	Princess = nil
 	for i, bee in pairs(BeeChest) do
 		if bee.individual then
 			if bee.individual.active and bee.individual.inactive and not (bee.name == "Forestry:beePrincessGE") then
-				print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee)))
+				--print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee)))
 				if IsDroneMissingBTrait(bee) then
-					Utils.TransferItemToFirstFreeSlot(Config.Storage, Config.Trash, 64, i + 1)
+					FakeComponent.TransferItemToFirstFreeSlot(Config.Storage, Config.Trash, 64, i + 1)
+					FakeComponent[Config.Trash] = {[0]={}}
 				end
 			end
 			if not Princess and bee.name == "Forestry:beePrincessGE" then
-				Climate.setHumidity(bee)
-				Climate.setTemperature(bee)
-				Climate.setLight(bee)
 				Princess = { princess = bee, slot = i + 1 }
 			end
 		end
@@ -104,7 +100,7 @@ function FindPrincessAndTrashDrones(BeeChest)
 end
 
 function Iterate()
-	BeeChest = Component.transposer.getAllStacks(Config.Storage).getAll()
+	BeeChest = Component.readInventory(Config.Storage)
 
 	--loop over every inventory slot and check if the individual is missing B Target Genes --TODO trash drones
 	SearchResult = FindPrincessAndTrashDrones(BeeChest)
@@ -132,32 +128,34 @@ function Iterate()
 				if PrincessDistance == 0 then
 					print("Breeding Done")
 					--move princess and result drone to output
-					Component.transposer.transferItem(Config.Storage, Config.Output, 1, PrincessSlot, 1)
-					Component.transposer.transferItem(Config.Storage, Config.Output, 1, BestDroneIndex + 1, 2)
+					FakeComponent.transferItem(Config.Storage, Config.Output, 1, PrincessSlot, 1)
+					FakeComponent.transferItem(Config.Storage, Config.Output, 1, BestDroneIndex + 1, 2)
 					return false
 				end
 			end
-			Result = Component.transposer.transferItem(Config.Storage, Config.Config, 1, BestDroneIndex + 1, 2)
-			print("[DEBUG]:    Moved Drone", Result, "From Slot", BestDroneIndex + 1)
+			Result = FakeComponent.transferItem(Config.Storage, Config.Alveary, 1, BestDroneIndex + 1, 2)
+			--print("[DEBUG]:    Moved Drone", Result, "From Slot", BestDroneIndex + 1)
 		elseif Princess then
 			--choose pure A drone
 			--move pure a drone to output chest
-			Result = Component.transposer.transferItem(Config.Input, Config.Config, 1, TargetTraits.ASlot, 2)
-			print("[DEBUG]:    Moved Fallback Drone", Result)
+			Result = FakeComponent.transferItem(Config.Input, Config.Alveary, 1, TargetTraits.ASlot, 2)
+			--print("[DEBUG]:    Moved Fallback Drone", Result)
 		end
-		Result = Component.transposer.transferItem(Config.Storage, Config.Config, 1, PrincessSlot, 1)
-		print("[DEBUG]:    Moved Princess", Result)
+		Result = FakeComponent.transferItem(Config.Storage, Config.Alveary, 1, PrincessSlot, 1)
+		--print("[DEBUG]:    Moved Princess", Result)
 	end
 	return true
 end
-
 function Main()
 	print("Forestry Bee Breeding\n-------------------------------\n ©B3tah3 , XI_Wizzard\n")
-	InputDrawer = Component.transposer.getAllStacks(Config.Input).getAll()
-	TargetTraits.QueryTargetStats(InputDrawer)
-	-- send Type B drones to storage, Type A to slot 2
-	Utils.TransferItemToFirstFreeSlot(Config.Input, Config.Storage, 64, TargetTraits.BSlot)
+	FakeComponent.initializeInput()
+	FakeComponent.printInventory(Config.Input)
+	InputDrawer = FakeComponent.readInventory(Config.Input)
+  TargetTraits.QueryTargetStats(InputDrawer)
 
+	-- send Type B drones to storage
+	FakeComponent.transferItem(Config.Input, Config.Storage, 64, TargetTraits.BSlot, 2)
+	
 	MakeIterations = true
 	local i = 0
 	while MakeIterations do
@@ -166,8 +164,11 @@ function Main()
 		print("---------------------------------")
 		i = i + 1
 		MakeIterations = Iterate()
-		os.sleep(40)
+		if MakeIterations then
+			FakeComponent.breedBees()
+		end
 	end
+	FakeComponent.printInventory(Config.Output)
 end
 --[[
 {[0]=
@@ -176,12 +177,8 @@ end
         },
     {maxDamage=0,damage=0,outputs={}, 
         individual={ maxHealth=20,hasEffect=false,health=20,isNatural=true,
-            active={effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=20,temperatureTolerance="NONE",fertility=2,humidityTolerance="NONE",speed=0.30000001192093,tolerantFlyer=false,flowerProvider="flowersVanilla",caveDwelling=false,nocturnal=false},
-						displayName="Clay",isSecret=false,isAnalyzed=true,type="bee",
-            inactive={effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=20,temperatureTolerance="NONE",fertility=2,humidityTolerance="NONE",speed=0.30000001192093,tolerantFlyer=false,flowerProvider="flowersVanilla",caveDwelling=false,nocturnal=false},
-						canSpawn=false,isAlive=true,generation=0,ident="gregtech.bee.speciesClay"
-						},
-				maxSize=64,label="Clay Drone",name="Forestry:beeDroneGE",size=1,inputs={},isCraftable=false,hasTag=true,tag="\31�\8\0\0\0\0\0\0����N�@\16���\"\20��\23_��#\16��A.D�K���lw��F�Oo���`{����͗��4\6\8!z\17�s\0�\n�7G�\\^\23\1�\11;�B�_�\9b�=�6\5\14`8��\20�V��+rԇ�u��\0�0s��5��n1�hgJ�?�}7\16@�R�\0014���\16ZGeM�\n?���^\18�d̘�)ڭЫܐC�y�\0�:iQ�HN*�ʥ�B���\3��BV�0�B\18:���؈:b��Xs���\24�$�eEK��O�g����\31�>������\19 �&�TJ4��܋��݁Rg��j��\3������o\14��3TN߫\13f�e݄����QLSL��'j˼`T��ߗ�ܵ�\3\0\0"
+            active={effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=20,temperatureTolerance="NONE",fertility=2,humidityTolerance="NONE",speed=0.30000001192093,tolerantFlyer=false,flowerProvider="flowersVanilla",caveDwelling=false,nocturnal=false},displayName="Clay",isSecret=false,isAnalyzed=true,type="bee",
+            inactive={effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=20,temperatureTolerance="NONE",fertility=2,humidityTolerance="NONE",speed=0.30000001192093,tolerantFlyer=false,flowerProvider="flowersVanilla",caveDwelling=false,nocturnal=false},canSpawn=false,isAlive=true,generation=0,ident="gregtech.bee.speciesClay"},maxSize=64,label="Clay Drone",name="Forestry:beeDroneGE",size=1,inputs={},isCraftable=false,hasTag=true,tag="\31�\8\0\0\0\0\0\0����N�@\16���\"\20��\23_��#\16��A.D�K���lw��F�Oo���`{����͗��4\6\8!z\17�s\0�\n�7G�\\^\23\1�\11;�B�_�\9b�=�6\5\14`8��\20�V��+rԇ�u��\0�0s��5��n1�hgJ�?�}7\16@�R�\0014���\16ZGeM�\n?���^\18�d̘�)ڭЫܐC�y�\0�:iQ�HN*�ʥ�B���\3��BV�0�B\18:���؈:b��Xs���\24�$�eEK��O�g����\31�>������\19 �&�TJ4��܋��݁Rg��j��\3������o\14��3TN߫\13f�e݄����QLSL��'j˼`T��ߗ�ܵ�\3\0\0"
         },
     {maxDamage=0,damage=0,outputs={},
         individual={maxHealth=20,hasEffect=false,health=20,isNatural=true,

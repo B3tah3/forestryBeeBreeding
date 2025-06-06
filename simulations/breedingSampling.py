@@ -76,27 +76,6 @@ def isDroneMissingAllRelevantTargetGenes(drone, target, queen, target_species_ge
                     return False
     return True
 
-'''
-def countMaskedTargetDistance(bee:Bee, target:Bee, queen:Bee, target_species_gene= "B"):
-    #count differene between bee and target genes, but dont count target genes that are in the queen
-    count = 0
-    for (g1, g2), (tg1, tg2), (q1, q2) in zip(bee.gene, target.gene,queen.gene):
-        # does the target require a B gene?
-        if tg1 == target_species_gene or tg2 == target_species_gene:
-            # is the queen missing a B gene
-            if q1 != target_species_gene or q2 != target_species_gene:
-                if g1 != tg1:
-                    count += 1
-                if g2 != tg2:
-                    count += 1
-        else:
-            # if the target does not require a B gene, count all differences
-            if g1 != tg1:
-                count += 1
-            if g2 != tg2:
-                count += 1
-    return count
-'''
 def isBeeWorseThanPure(bee, target,numberOfRetainedGenes:int, numberOfSuperGenes:int, target_species_gene = "B", pure_species_gene = "A"):
     #check if the bee is pure A
     if(bee == Bee.from_species(pure_species_gene, numberOfRetainedGenes, numberOfSuperGenes)):
@@ -145,7 +124,6 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
             for drone in population:
                 distance = drone.__distance__(target)
                 isDroneRelevant = not isDroneMissingAllRelevantTargetGenes(drone, target, queen)
-                #masked_distance = countMaskedTargetDistance(drone, target, queen)
                 if verbosity: print(f"    Drone: {drone} Distance to target: {distance}, isRelevant: {isDroneRelevant}")
                 if distance < best_distance and isDroneRelevant:
                     best_distance = distance
@@ -153,12 +131,12 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
         if verbosity: print(f"Chosen drone: {father_drone}, Reset:{purify_queen}, Is pure: {is_queen_pure}")
         #user input     
         '''for id, drone in enumerate(population):
-                    distance = drone.__distance__(target)
-                    print(f"    Drone {id}: {drone} Distance to target: {distance}")
+                distance = drone.__distance__(target)
+                print(f"    Drone {id}: {drone} Distance to target: {distance}")
 
-                chosen_id = int(input("Enter the ID of the chosen drone: "))
-                chosen_drone = list(population)[chosen_id]
-                print(f"Chosen drone: {chosen_drone}")'''
+            chosen_id = int(input("Enter the ID of the chosen drone: "))
+            chosen_drone = list(population)[chosen_id]
+            print(f"Chosen drone: {chosen_drone}")'''
         new_queen = breed(queen, father_drone)
         #print(f"New queen: {new_queen}")
 

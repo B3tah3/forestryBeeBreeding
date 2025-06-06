@@ -1,0 +1,46 @@
+translations = {
+		["territory"] = { n="Territory", v = {
+			["Vec3i{x=9, y=6, z=9}"]    = "Average",
+			["Vec3i(x=11, y=8, z=11}"]  = "Large",
+			["Vec3i{x=13, y=12, z=13}"] = "Larger",
+			["Vec3i{x=15, y=13, z=15}"] = "Largest"
+		} },
+		["humidityTolerance"] = { n="Humidity tolerance" },
+		["flowering"] = { n="Flowering", v = {
+			[5] = "Slowest",
+			[10] = "Slower",
+			[15] = "Slow",
+			[20] = "Average",
+			[25] = "Fast",
+			[30] = "Faster",
+			[35] = "Fastest" } },
+		["neverSleeps"] = { n="Never Sleeps", v = booleanMap },
+		["flowerProvider"] = { n="Flowers" },
+		["toleratesRain"] = { n="Tolerates Rain", v = booleanMap },
+		["lifespan"] = { n="Lifespan", v = { 
+			[10] = "Shortest", 
+			[20] = "Shorter", 
+			[30] = "Short",
+			[35] = "Shortened",
+			[40] = "Normal",
+			[45] = "Elongated", 
+			[50] = "Long",
+			[60] = "Longer",
+			[70] = "Longest" } },
+		["caveDwelling"] = { n="Cave dwelling", v = booleanMap},
+		["fertility"] = { n="Fertility", v= { [1] = "1", [2] = "2", [3] = "3", [4] = "4" } },
+		["speed"] = { 
+			n = "Speed", 
+			f = function (x) return string.format("%.1f", x) end,
+			v = { 
+				["0.3"] = "Slowest",
+				["0.6"] = "Slower",
+				["0.8"] = "Slow",
+				["1.0"] = "Normal",
+				["1.2"] = "Fast",
+				["1.4"] = "Faster",
+				["1.7"] = "Fastest" } },
+		["effect"] = { n="Effect", v = {} },
+		["species"] = { n="Species" }, 
+		["temperatureTolerance"] = { n="Temperature tolerance" }
+	}
