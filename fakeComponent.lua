@@ -1,5 +1,5 @@
 os = require("os")
-Config = require("config")
+Config = require("fakeConfig")
 math = require('math')
 math.randomseed(os.time())
 math.random(); math.random(); math.random()

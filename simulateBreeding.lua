@@ -1,9 +1,6 @@
---Sides = require("sides")
---Climate = require("climate")
 TargetTraits = require("targetTraits")
---Utils = require("utils")
 Component = require("fakeComponent")
-Config = require("config")
+Config = require("fakeConfig")
 
 function DeepEquals(a, b, visited)
 	if a == b then
