@@ -1,0 +1,16 @@
+BUGS
+in mc, beeBreeding sometimes fails to move a drone to alveary and trashes many drones
+  - might have been caused by running out of one drone type, exception catching added
+during new multi trait breeding, algorithm takes much longer and fails with some expensive combinations
+can also run out of b type drones much faster than expected
+  - semi automate combination testing?
+
+
+Testing
+((species catalogue (for generating default bees of some different species)))
+
+Features
+upgrade lua algorithm for multi stat optimization
+translate stat numbers to nice strings
+mutate program with fake components
+finalize mutate algorithm to discover new species

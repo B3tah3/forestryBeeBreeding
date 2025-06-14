@@ -5,18 +5,6 @@ math.randomseed(os.time())
 math.random(); math.random(); math.random()
 
 FakeComponent = {}
-FakeComponent[Config.Trash] = {[0]={}}
-FakeComponent[Config.Output] = {[0]={}}
-FakeComponent[Config.Alveary] = {[0]={}}
-FakeComponent[Config.Input] = {[0]={}}
-FakeComponent[Config.Storage] = {[0]={}}
-for i =1,100 do
-  FakeComponent[Config.Trash][i] = {}
-  FakeComponent[Config.Output][i] = {}
-  FakeComponent[Config.Alveary][i] = {}
-  FakeComponent[Config.Storage][i] = {}
-end
-
 function FakeComponent.readInventory(side)
   return FakeComponent[side]
 end
@@ -31,7 +19,7 @@ function FakeComponent.transferItem(fromSide, toSide, amount, fromSlot, toSlot)
     print('Move failed because origin slot empty')
     return 0
   end
-  print("Moving from "..Config[fromSide]..":"..fromSlot.." to "..Config[toSide]..":"..toSlot)
+  --print("Moving from "..Config[fromSide]..":"..fromSlot.." to "..Config[toSide]..":"..toSlot)
   
   FakeComponent[toSide][toSlot] = {}
   for k,v in pairs(FakeComponent[fromSide][fromSlot]) do
@@ -49,7 +37,7 @@ function FakeComponent.transferItem(fromSide, toSide, amount, fromSlot, toSlot)
 end
 function FakeComponent.TransferItemToFirstFreeSlot(sourceSide, sinkSide, count, sourceSlot)
   local sinkData = FakeComponent.readInventory(sinkSide)
-  for i = 0, 100 do
+  for i = 0, 1000 do
     local slot = sinkData[i]
     if next(slot) == nil then
       FakeComponent.transferItem(sourceSide, sinkSide, count, sourceSlot, i + 1)
@@ -63,7 +51,7 @@ function FakeComponent.breedBees()
   local parent1 = alveary[0]
   local parent2 = alveary[1]
   local names = {[1]="Forestry:beePrincessGE",[2]="Forestry:beeDroneGE",[3]="Forestry:beeDroneGE",[4]="Forestry:beeDroneGE",[5]="Forestry:beeDroneGE"}
-  for i = 1,4 do
+  for i = 1,5 do
     local child = FakeComponent.createChild(parent1, parent2, names[i])
     FakeComponent[Config.Alveary][2+i] = child
   end
@@ -118,11 +106,41 @@ function FakeComponent.table_to_string(tbl)
     end
     return result.."}"
 end
-function FakeComponent.printInventory(side)
+function FakeComponent.BeeToGeneString(bee, targetTraits)
+  local geneString = ''
+  for k,activeGene in pairs(bee.individual.active) do
+    local inactiveGene = bee.individual.inactive[k]
+    if targetTraits.A[k] ~= nil then
+      if DeepEquals(targetTraits.A[k], activeGene) then
+        geneString = geneString..'[A,'
+      else
+        geneString = geneString..'[B,'
+      end
+      if DeepEquals(targetTraits.A[k], inactiveGene) then
+        geneString = geneString..'A],'
+      else
+        geneString = geneString..'B],'
+      end
+    elseif targetTraits.B[k] ~= nil then
+      if DeepEquals(targetTraits.B[k], activeGene) then
+        geneString = geneString..'[B,'
+      else
+        geneString = geneString..'[A,'
+      end
+      if DeepEquals(targetTraits.B[k], inactiveGene) then
+        geneString = geneString..'B],'
+      else
+        geneString = geneString..'A],'
+      end
+    end
+  end
+  return geneString
+end
+function FakeComponent.printInventory(side, targetTraits)
   print('Inventory '..Config[side]..':')
   for k,v in pairs(FakeComponent[side]) do
     if next(v) ~= nil then
-      print('Slot '..tostring(k+1)..' has '..FakeComponent.table_to_string(v)..'\n')
+      print('Slot '..tostring(k+1)..' has '..FakeComponent.BeeToGeneString(v, targetTraits))--..' with '..FakeComponent.table_to_string(v)..'\n')
     end
   end
 end
@@ -135,13 +153,21 @@ function FakeComponent.initializeInput()
     name="Forestry:beeDroneGE",
     size=128
   }
+  local antiSaltDrone = {
+    individual={
+      active={effect="forestry.allele.effect.poison",territory={15,13,15},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=70,temperatureTolerance="NONE",fertility=3,humidityTolerance="UP_2",speed=0.30000001192093,tolerantFlyer=true,flowerProvider="flowersVanilla",caveDwelling=true,nocturnal=true},
+      inactive={effect="forestry.allele.effect.poison",territory={15,13,15},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=70,temperatureTolerance="NONE",fertility=3,humidityTolerance="UP_2",speed=0.30000001192093,tolerantFlyer=true,flowerProvider="flowersVanilla",caveDwelling=true,nocturnal=true},
+      },
+    name="Forestry:beeDroneGE",
+    size=64
+  }
   local saltDrone = {
     individual={
       active={effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Warm",humidity="Arid",name="Salt",uid="gregtech.bee.speciesSalty"},flowering=25,lifespan=20,temperatureTolerance="DOWN_1",fertility=2,humidityTolerance="NONE",speed=0.60000002384186,tolerantFlyer=false,flowerProvider="flowersCacti",caveDwelling=false,nocturnal=false},
       inactive={effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Warm",humidity="Arid",name="Salt",uid="gregtech.bee.speciesSalty"},flowering=25,lifespan=20,temperatureTolerance="DOWN_1",fertility=2,humidityTolerance="NONE",speed=0.60000002384186,tolerantFlyer=false,flowerProvider="flowersCacti",caveDwelling=false,nocturnal=false},
     },
     name="Forestry:beeDroneGE",
-    size=128,
+    size=1280,
   }
   local saltPrincess = {
     individual={
@@ -151,8 +177,18 @@ function FakeComponent.initializeInput()
     name="Forestry:beePrincessGE",
     size=1,
   }
-  FakeComponent[Config.Input][2] = clayDrone
-  FakeComponent[Config.Input][3] = saltDrone
+  FakeComponent[Config.Trash] = {[0]={}}
+  FakeComponent[Config.Output] = {[0]={},{},{}}
+  FakeComponent[Config.Alveary] = {[0]={},{},{},{},{},{},{}}
+  FakeComponent[Config.Input] = {[0]={}}
+  FakeComponent[Config.Storage] = {[0]={}}
+  for i =1,1000 do
+    --FakeComponent[Config.Output][i] = {}
+    --FakeComponent[Config.Alveary][i] = {}
+    FakeComponent[Config.Storage][i] = {}
+  end
+  FakeComponent[Config.Input][3] = antiSaltDrone
+  FakeComponent[Config.Input][2] = saltDrone
   FakeComponent[Config.Storage][0] = saltPrincess
 end
 return FakeComponent

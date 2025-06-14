@@ -1,6 +1,0 @@
-BUGS
-lua stat beeBreeding sometimes fails to move drone, storage chest is then empty exept for B type
-
-Features
-embed lua algorithm in simulated enviroment (chest moving, beeBreeding)
-upgrade lua algorithm for multi stat optimization
