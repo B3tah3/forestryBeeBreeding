@@ -52,8 +52,7 @@ def plot_results(file_path):
     
     # Plotting
     plt.figure(figsize=(11, 7))
-    font = {'family' : 'normal',
-        'size'   : 22}
+    font = {'size'   : 22}
     plt.rc('font', **font)
     plt.imshow(Z, origin='lower', cmap='viridis', extent=[1, 13, 1, 13], aspect='equal')
     plt.xticks(other_genes)
@@ -68,7 +67,7 @@ def plot_results(file_path):
             if not math.isnan(Z[i, j]):
                 plt.text(x, y, f'{Z[i, j]:.0f}', ha='left', va='bottom', color='red', fontsize=15)
     #plt.show()
-    plt.savefig('images/medianGens_multiV1_Fert4.png')
+    plt.savefig('images/medianGens_multiV11_Fert4.png')
 
 if __name__ == "__main__":
-    plot_results('simulations/results_multiV1.txt')
+    plot_results('simulations/results_multiV11.txt')
