@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "forestrybeebreeding"
+version = "0.1.0"
+description = ""
+authors = ["B3tah3 <louis@hswl-glaenzer.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+matplotlib = "^3.10.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

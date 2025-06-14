@@ -17,8 +17,8 @@ def plot_results(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
-    other_genes = np.arange(1,12)
-    super_genes = np.arange(1,12)
+    other_genes = np.arange(1,13)
+    super_genes = np.arange(1,13)
     median_generations = {}
     
 
@@ -55,7 +55,7 @@ def plot_results(file_path):
     font = {'family' : 'normal',
         'size'   : 22}
     plt.rc('font', **font)
-    plt.imshow(Z, origin='lower', cmap='viridis', extent=[1, 12, 1, 12], aspect='equal')
+    plt.imshow(Z, origin='lower', cmap='viridis', extent=[1, 13, 1, 13], aspect='equal')
     plt.xticks(other_genes)
     plt.yticks(super_genes)
     plt.grid(color='white', linestyle='-', linewidth=1)
@@ -67,9 +67,8 @@ def plot_results(file_path):
         for j, x in enumerate(other_genes):
             if not math.isnan(Z[i, j]):
                 plt.text(x, y, f'{Z[i, j]:.0f}', ha='left', va='bottom', color='red', fontsize=15)
-    plt.show()
-    
-    
+    #plt.show()
+    plt.savefig('images/medianGens_multiV1_Fert4.png')
 
 if __name__ == "__main__":
-    plot_results('simulations/results_multiAlg_1ksamples.txt')
+    plot_results('simulations/results_multiV1.txt')
