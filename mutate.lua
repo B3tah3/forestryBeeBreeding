@@ -1,12 +1,13 @@
 c = require("component")
 Component = require("component")
+Climate = require("climate")
 Config = require("config")
 Utils = require("utils")
 Mutation = {}
 
 Mutation.target = nil
 Mutation.Storage = {}
-Mutation.alveary = c.items
+Mutation.alveary = c.for_alveary_4
 Mutation.tree = nil
 StorageChest = { value = 1 }
 
@@ -37,12 +38,13 @@ function Mutation.syncStorage()
 	end
 end
 
-function FindPrincess(BeeChest)
+function Mutation.findPrincess(BeeChest)
 	Princess = nil
 	BeeChest.reset()
 	for i = 1, BeeChest.count() do
 		local bee = BeeChest()
 		if bee.individual and not Princess and bee.name == "Forestry:beePrincessGE" then
+			print("Found Princess")
 			Climate.setHumidity(bee)
 			Climate.setTemperature(bee)
 			Climate.setLight(bee)
@@ -53,8 +55,8 @@ function FindPrincess(BeeChest)
 	return Princess
 end
 
-function FindDrone(BeeChest, princess, target, parent1, parent2)
-	Drone = nil
+function Mutation.findDrone(BeeChest, princess, target, parent1, parent2)
+	local Drone = nil
 	-- if princess has target then
 	-- if princess 0,0 breed 1,1 or 2,2 or 1,2
 	-- if princess 1,0 ,1,t or 1,1 breed 2,2
@@ -63,16 +65,21 @@ function FindDrone(BeeChest, princess, target, parent1, parent2)
 	--
 	--if princess has 1 breed 2,2
 	-- else breed 1,1
+	--
 
-	for i = 1, storage.count() do
-		local bee = storage()
+	local princessSpecies = {
+		active = princess.princess.individual.active.species.uid,
+		inactive = princess.princess.individual.inactive.species.uid,
+	}
+
+	BeeChest.reset()
+	for i = 1, BeeChest.count() do
+		local bee = BeeChest()
 		if bee.name == "Forestry:beeDroneGE" then
 			local activeSpecies = bee.individual.active.species.uid
 			local inactiveSpecies = bee.individual.inactive.species.uid
-			local princessSpecies = {
-				active = princess.princess.individual.active.species.uid,
-				inactive = princess.princess.individual.individual.species.uid,
-			}
+			print("Active Species", activeSpecies)
+			print("Inactive Species", inactiveSpecies)
 			-- Trash Drones that contain irellevant species
 			if
 				not (
@@ -88,6 +95,7 @@ function FindDrone(BeeChest, princess, target, parent1, parent2)
 			else
 				-- If Drone has Both Target Traits
 				if activeSpecies == target and inactiveSpecies == target then
+					print("Found Drone with both traits")
 					Drone = { drone = bee, slot = i }
 				end
 				if
@@ -98,6 +106,7 @@ function FindDrone(BeeChest, princess, target, parent1, parent2)
 					)
 				then
 					if activeSpecies == target or inactiveSpecies == target then
+						print("Found Drone with one trait")
 						Drone = { drone = bee, slot = i }
 					end
 					if
@@ -105,15 +114,18 @@ function FindDrone(BeeChest, princess, target, parent1, parent2)
 						or (princessSpecies.active ~= parent2 and princessSpecies.inactive == parent1) and not Drone
 					then
 						if activeSpecies == parent2 and inactiveSpecies == parent2 then
+							print("Selecting Pure parent 2")
 							Drone = { drone = bee, slot = i }
 							-- Match
 						end
 					end
 					if
-						(princessSpecies.active == parent2 and princessSpecies.inactive ~= parent1)
-						or (princessSpecies.active ~= parent1 and princessSpecies.inactive == parent2) and not Drone
+						-- (princessSpecies.active == parent2 and princessSpecies.inactive ~= parent1)
+						--or (princessSpecies.active ~= parent1 and princessSpecies.inactive == parent2) and
+						not Drone
 					then
 						if activeSpecies == parent1 and inactiveSpecies == parent1 then
+							print("selecting pure parent 1")
 							Drone = { drone = bee, slot = i }
 							-- Match
 						end
@@ -122,7 +134,10 @@ function FindDrone(BeeChest, princess, target, parent1, parent2)
 			end
 		end
 	end
+	return Drone
 end
+
+-- M.crossbreed("gregtech.bee.speciesChrome" , "gregtech.bee.speciesSteel" , "gregtech.bee.speciesAluminium")
 
 function Mutation.crossbreed(bee1, bee2, target)
 	Mutation.syncStorage()
@@ -135,12 +150,19 @@ function Mutation.crossbreed(bee1, bee2, target)
 		Utils.TransferItemToFirstFreeSlot(Config.Output, Config.Storage, 32, Mutation.Storage[bee1].drone)
 	local parent2Slot =
 		Utils.TransferItemToFirstFreeSlot(Config.Output, Config.Storage, 32, Mutation.Storage[bee2].drone)
-	local storage = c.transposer.getAllStacks(Config.Output)
-	local breedingDrone = nil
-	local princessSlot = nil
-	Princess = FindPrincess(storage)
+	print("Setup Done")
+
+	local storage = c.transposer.getAllStacks(Config.Storage)
+	local Princess = Mutation.findPrincess(storage)
+	print("Princess", Princess)
+	Mutation.printTree(Princess.princess)
 	storage.reset()
-	local princess = c.transposer.getStackInSlot(Config.Storage, princessSlot)
+	local Drone = Mutation.findDrone(storage, Princess, target, parent1, parent2)
+	print("Drone", Drone)
+	Mutation.printTree(Drone.drone)
+	storage.reset()
+	local princess = Princess.princess
+
 	if princess.individual.active.species.uid == bee1 and princess.individual.inactive.species.uid == bee1 then
 		-- move bee2
 		Utils.TransferItemToFirstFreeSlot(Config.Storage, Config.Output, 1, parent2Slot)
@@ -149,7 +171,6 @@ function Mutation.crossbreed(bee1, bee2, target)
 		Utils.TransferItemToFirstFreeSlot(Config.Storage, Config.Output, 1, parent1Slot)
 	else
 	end
-	print("Breeding Drone", breedingDrone)
 
 	print("Moved Drones For Breeding")
 	print("Target", target, "Parents:", bee1, bee2)
@@ -205,6 +226,11 @@ end
 
 function Mutation.defaultMutation()
 	Mutation.crossbreed("gregtech.bee.speciesChrome", "gregtech.bee.speciesSteel", "gregtech.bee.speciesStainlesssteel")
+end
+function Mutation.reset()
+	package.loaded.mutate = nil
+	package.loaded.M = nil
+	M = require("mutate")
 end
 
 return Mutation
