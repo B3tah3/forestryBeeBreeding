@@ -107,7 +107,7 @@ def choose_father(queen, target, population):
         best_distance = math.inf
         for drone in population:
             distance = drone.__distance__(target)
-            isDroneRelevant = not isDroneMissingAllRelevantTargetGenes(drone, target, queen)
+            isDroneRelevant = not isDroneMissingAllRelevantTargetGenes(drone, target, queen) or (distance == 0)
             if verbosity: print(f"    Drone: {drone} Distance to target: {distance}, isRelevant: {isDroneRelevant}")
             if distance < best_distance and isDroneRelevant:
                 best_distance = distance
@@ -120,8 +120,8 @@ numberOfRetainedGenes = 4
 numberOfSuperGenes = 8
 
 def reset_population():
-    population = set()
-    population.add(Bee.from_species("A",numberOfRetainedGenes, numberOfSuperGenes,math.inf))
+    population = list()
+    population.append(Bee.from_species("A",numberOfRetainedGenes, numberOfSuperGenes,math.inf))
     target = Bee((('B', 'B'),) *(numberOfRetainedGenes)+ (('A', 'A'),) * (numberOfSuperGenes))
     princess = None
     return {"drones": population, "target":target, "princess":princess}
@@ -129,6 +129,7 @@ def reset_population():
 
 def __main__():
     state = reset_population()
+    count_matching = 0
     with open("multi11decision.log") as logfile:
         for line in logfile:
             k,v,*r = line.split('=')
@@ -141,7 +142,7 @@ def __main__():
                 pass
             elif k == 'drone':
                 #add to state
-                state['drones'].add(Bee.from_gene(v))
+                state['drones'].append(Bee.from_gene(v))
                 pass
             elif k == 'chosen':
                 #evaluate equalness
@@ -167,7 +168,9 @@ def __main__():
                     
                     
                     #return
-                pass
+                else:
+                    count_matching += 1
+    print(f"Finished Listing non-matching. Matching={count_matching}")    
 
 if __name__ == "__main__":
     __main__()

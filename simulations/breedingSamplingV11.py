@@ -1,7 +1,7 @@
 import random
 import math
 import statistics
-verbosity = False
+verbosity = True
 
 class Bee:
     amout:float = 1.0  # Default amount of bees
@@ -83,9 +83,9 @@ def isBeeWorseThanPure(bee, target,numberOfRetainedGenes:int, numberOfSuperGenes
     return isBeeMissingAllTargetGenes(bee, target, target_species_gene)
 
 def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertility): 
-    population = set()
+    population = list()
     for species in "AB":
-        population.add(Bee.from_species(species,numberOfRetainedGenes, numberOfSuperGenes,math.inf))
+        population.append(Bee.from_species(species,numberOfRetainedGenes, numberOfSuperGenes,math.inf))
     queen = Bee.from_species("A",numberOfRetainedGenes, numberOfSuperGenes)
     target = Bee((('B', 'B'),) *(numberOfRetainedGenes)+ (('A', 'A'),) * (numberOfSuperGenes))
 
@@ -123,8 +123,8 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
             best_distance = math.inf
             for drone in population:
                 distance = drone.__distance__(target)
-                isDroneRelevant = not isDroneMissingAllRelevantTargetGenes(drone, target, queen)
-                if verbosity: print(f"    Drone: {drone} Distance to target: {distance}, isRelevant: {isDroneRelevant}")
+                isDroneRelevant = not isDroneMissingAllRelevantTargetGenes(drone, target, queen)  or (distance == 0)
+                if verbosity and isDroneRelevant: print(f"    Drone: {drone} Distance to target: {distance}, isRelevant: {isDroneRelevant}")
                 if distance < best_distance and isDroneRelevant:
                     best_distance = distance
                     father_drone = drone
@@ -148,7 +148,7 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
                         bee.amount += 1
                         break
             else:
-                population.add(new_drone)
+                population.append(new_drone)
 
         #decrease one from the count of the father drone
         father_drone.amount -= 1
@@ -171,7 +171,7 @@ def simulate_quality_breeding_with_params(numberOfRetainedGenes, numberOfSuperGe
     generations = []
     dronesA = []
     dronesB = []
-    for i in range(1000):
+    for i in range(1):
         (numberOfGenerations, countADrones, countBDrones) = simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertility)
         generations.append(numberOfGenerations)
         dronesA.append(countADrones)
@@ -195,7 +195,7 @@ def simulate_quality_breeding_with_params(numberOfRetainedGenes, numberOfSuperGe
     print(f"Average generations to target: {average_generations}, Median generations: {median_generations}")
     print(f"Average A drone consumption: {average_ADrones}, Max: {max_ADrones}, std: {std_ADrones}, 5*std+avg: {fiveSigmaEnoughA}")
     print(f"Average B drone consumption: {average_BDrones}, Max: {max_BDrones}, std: {std_BDrones}, 5*std+avg: {fiveSigmaEnoughB}")
-    
+    #print(generations)
 
     #print(f"Standard deviation: {math.sqrt(sum((g - sum(generations) / len(generations)) ** 2 for g in generations) / len(generations))}")
     return average_generations

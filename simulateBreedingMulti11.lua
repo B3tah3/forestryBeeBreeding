@@ -3,7 +3,7 @@ Component = require("fakeComponent")
 Config = require("fakeConfig")
 Io = require("io")
 Verbose = false
-DecisionLogging = false
+DecisionLogging = true
 function DeepEquals(a, b, visited)
 	if a == b then
 		return true
@@ -153,8 +153,8 @@ function FindPrincessAndTrashDrones(BeeChest)
 				--print("Slot " .. tostring(i) .. " trash=" .. tostring(IsDroneMissingBTrait(bee)))
 				--if IsDroneMissingBTrait(bee) then
 				if IsDroneMissingAllBTraits(bee) then
-					FakeComponent.TransferItemToFirstFreeSlot(Config.Storage, Config.Trash, 64, i + 1)
-					FakeComponent[Config.Trash] = {[0]={}}
+					--FakeComponent.TransferItemToFirstFreeSlot(Config.Storage, Config.Trash, 64, i + 1)
+					--FakeComponent[Config.Trash] = {[0]={}}
 					--if Verbose then print('moved drone to trash', i+1)end
 				end
 			end
@@ -188,7 +188,7 @@ function Iterate()
 	if Verbose then print('Princess has distance='..PrincessDistance..' and gene='..FakeComponent.BeeToGeneString(Princess, TargetTraits)) end
 	local logfile = nil
 	if DecisionLogging then
-		local logfile = io.open('multi11decision.log','a')
+		logfile = io.open('multi11decision.log','a')
 		if not logfile then return end
 		logfile:write('princess='..FakeComponent.BeeToGeneString(Princess, TargetTraits)..'\n')
 	end
@@ -229,6 +229,7 @@ function Iterate()
 				--move princess and result drone to output
 				FakeComponent.transferItem(Config.Storage, Config.Output, 1, PrincessSlot, 1)
 				FakeComponent.transferItem(Config.Storage, Config.Output, 1, BestDroneIndex + 1, 2)
+				if DecisionLogging then logfile:flush()logfile:close() end
 				return false
 			end
 		end
@@ -311,7 +312,9 @@ function Main()
 		end--]]
 		--if i >= 40 then return 999 end
 	end
-	print(i)
+	--print(i)
+	io.write(i..', ')
+	io.flush()
 	if Verbose then FakeComponent.printInventory(Config.Output, TargetTraits)end
 	--print('Target Traits were A='..FakeComponent.table_to_string(TargetTraits.A)..' and B='..FakeComponent.table_to_string(TargetTraits.B))
 	return i
