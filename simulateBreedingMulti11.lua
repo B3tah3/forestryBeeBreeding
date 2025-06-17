@@ -1,7 +1,9 @@
 TargetTraits = require("targetTraits")
 Component = require("fakeComponent")
 Config = require("fakeConfig")
+Io = require("io")
 Verbose = false
+DecisionLogging = false
 function DeepEquals(a, b, visited)
 	if a == b then
 		return true
@@ -80,7 +82,7 @@ function IsDroneMissingAllRelevantTargetGenes(drone, princess)
 		--	isPrincessMissingAnyBGenes = true
 		--end
 	end
-	return true and isPrincessMissingAnyBGenes
+	return true --and isPrincessMissingAnyBGenes
 end
 --target(B,B,A,A,A)
 --princs(A,A,A,A,A) passes
@@ -166,8 +168,9 @@ end
 
 function Iterate()
 	BeeChest = Component.readInventory(Config.Storage)
-	--InputDrawer = Component.readInventory(Config.InputDrawer)
-	--FallbackDrone = InputDrawer[TargetTraits.ASlot-1]
+	InputDrawer = FakeComponent.readInventory(Config.Input)
+	local fallbackDrone = InputDrawer[TargetTraits.ASlot-1]
+
 
 	SearchResult = FindPrincessAndTrashDrones(BeeChest)
 	if SearchResult == nil then
@@ -175,13 +178,19 @@ function Iterate()
 		return true
 	end
 	Princess = SearchResult.princess
-	PrincessSlot = SearchResult.slot
-	PrincessDistance = MeasureDroneDistanceToTarget(Princess)
-	if Verbose then print('Princess has distance='..PrincessDistance..' and gene='..FakeComponent.BeeToGeneString(Princess, TargetTraits)) end
-
-
 	if Princess == nil then
 		return true
+	end
+	PrincessSlot = SearchResult.slot
+	PrincessDistance = MeasureDroneDistanceToTarget(Princess)
+
+	--log state, later append decision
+	if Verbose then print('Princess has distance='..PrincessDistance..' and gene='..FakeComponent.BeeToGeneString(Princess, TargetTraits)) end
+	local logfile = nil
+	if DecisionLogging then
+		local logfile = io.open('multi11decision.log','a')
+		if not logfile then return end
+		logfile:write('princess='..FakeComponent.BeeToGeneString(Princess, TargetTraits)..'\n')
 	end
 	if not IsPrincessWorseThanPure(Princess) then
 		--choose best valid drone from storage chest or fallback input, or default to fallback drone
@@ -189,9 +198,7 @@ function Iterate()
 		BestDistance = 999
 
 		--check if input drones are valid, and use as baseline distance
-		InputDrawer = FakeComponent.readInventory(Config.Input)
-		fallbackDrone = InputDrawer[TargetTraits.ASlot-1]
-		fallbackDistance = MeasureDroneDistanceToTarget(fallbackDrone)
+		local fallbackDistance = MeasureDroneDistanceToTarget(fallbackDrone)
 		IsFallbackRelevant = not IsDroneMissingAllRelevantTargetGenes(fallbackDrone, Princess)
 		if IsFallbackRelevant then
 			BestDistance = fallbackDistance
@@ -201,11 +208,13 @@ function Iterate()
 			if BeeChest[i] and BeeChest[i].name == "Forestry:beeDroneGE" then
 				local bee = BeeChest[i]
 				if bee.individual and bee.individual.active and bee.individual.inactive then
+					
 					local distanceToTarget = MeasureDroneDistanceToTarget(bee)
 					local isDroneRelevant = not IsDroneMissingAllRelevantTargetGenes(bee, Princess) or (distanceToTarget == 0)
-					if isDroneRelevant then
+					if DecisionLogging then logfile:write('drone='..FakeComponent.BeeToGeneString(bee, TargetTraits)..'='..tostring(isDroneRelevant)..'='..tostring(distanceToTarget)..'\n')end
+					--if isDroneRelevant then
 						--if Verbose then print('Drone '..tostring(i+1)..' has distance='..distanceToTarget..' and amount='..tostring(bee.size)..' and gene='..FakeComponent.BeeToGeneString(bee, TargetTraits)) end--..' with '..FakeComponent.table_to_string(bee)..'\n')
-					end
+					--end
 					if isDroneRelevant and (distanceToTarget < BestDistance) then
 						BestDistance = distanceToTarget
 						BestDroneIndex = i
@@ -226,6 +235,10 @@ function Iterate()
 		if BestDroneIndex == -1 then
 			--print("No eligable Drone found. Using Fallback drone")
 			Result = FakeComponent.transferItem(Config.Input, Config.Alveary, 1, TargetTraits.ASlot, 2)
+			if DecisionLogging then 
+				logfile:write('chosen='..FakeComponent.BeeToGeneString(fallbackDrone, TargetTraits)..'\n')
+				logfile:flush()logfile:close()
+			end
 			if Result ~= 1 then
 				print("Ran out of Super Drones. Programm halting.")
 				return false
@@ -233,6 +246,10 @@ function Iterate()
 		else
 			--FakeComponent.printInventory(Config.Storage)
 			if Verbose then print('Drone has distance='..BestDistance..' and gene='..FakeComponent.BeeToGeneString(FakeComponent[Config.Storage][BestDroneIndex], TargetTraits)) end
+			if DecisionLogging then 
+				logfile:write('chosen='..FakeComponent.BeeToGeneString(FakeComponent[Config.Storage][BestDroneIndex], TargetTraits)..'\n')
+				logfile:flush()logfile:close()
+			end
 			Result = FakeComponent.transferItem(Config.Storage, Config.Alveary, 1, BestDroneIndex + 1, 2)
 			--print("[DEBUG]:    Moved Drone Dist="..tostring(BestDistance).."", Result, "From Slot", BestDroneIndex + 1)
 			if Result ~= 1 then
@@ -240,11 +257,15 @@ function Iterate()
 				return false
 			end
 		end
-	elseif Princess then
+	else
 		--choose pure A drone
 		--move pure a drone to output chest
 		Result = FakeComponent.transferItem(Config.Input, Config.Alveary, 1, TargetTraits.ASlot, 2)
-		--print("[DEBUG]:    Moved Fallback Drone", Result)
+		if DecisionLogging then 
+			logfile:write('chosen='..FakeComponent.BeeToGeneString(fallbackDrone, TargetTraits)..'\n')
+			logfile:flush()logfile:close()
+		end
+			--print("[DEBUG]:    Moved Fallback Drone", Result)
 		if Result ~= 1 then
 			print("Ran out of Super Drones. Programm halting.")
 			return false
@@ -252,7 +273,6 @@ function Iterate()
 	end
 	Result = FakeComponent.transferItem(Config.Storage, Config.Alveary, 1, PrincessSlot, 1)
 	--print("[DEBUG]:    Moved Princess", Result)
-	
 	return true
 end
 function Main()
@@ -299,10 +319,33 @@ end
 
 Trials = {}
 Average = 0
-TrialAmount = 100
+OccuranceCounter = {[0]=nil}
+TrialAmount = 1000
 if Verbose then TrialAmount = 1 end
 for i = 1,TrialAmount do
-	Trials[i] = Main()
-	Average = (Average*(i-1) + Trials[i] ) / i
+	local generations = Main()
+	Trials[i] = generations
+	Average = (Average*(i-1) + generations ) / i
+	if OccuranceCounter[generations] then
+		OccuranceCounter[generations] = OccuranceCounter[generations] + 1
+	else
+		OccuranceCounter[generations] = 1
+	end
+	
 end
-print(Average)
+print('Average= '..tostring(Average))
+
+local occurenceString = ''
+local medianCounter = 0
+local median = 0
+for i = 0,200 do
+	if OccuranceCounter[i] ~= nil then
+		occurenceString = occurenceString..tostring(i)..':'..tostring(OccuranceCounter[i])..', '
+		medianCounter = medianCounter + OccuranceCounter[i]
+		if medianCounter < TrialAmount/2 then
+			median = i
+		end
+	end
+end
+print(occurenceString)
+print('Median= '..tostring(median))

@@ -162,8 +162,8 @@ def simulate_quality_breeding(numberOfRetainedGenes, numberOfSuperGenes, fertili
         queen = new_queen
     return (i, countADrones, countBDrones)
 
-Combinations_numberOfRetainedGenes = [1]#list(range(1,7))
-Combinations_numberOfSuperGenes = [12]#list(range(1,13))
+Combinations_numberOfRetainedGenes = [4]#list(range(1,7))
+Combinations_numberOfSuperGenes = [8]#list(range(1,13))
 Combinations_fertility = [4]
 
 def simulate_quality_breeding_with_params(numberOfRetainedGenes, numberOfSuperGenes, fertility):
