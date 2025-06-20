@@ -256,10 +256,11 @@ function Main()
 		MakeIterations = Iterate()
 		--FakeComponent.printInventory(Config.Alveary)
 		if MakeIterations then
-			FakeComponent.breedBees()
+			FakeComponent.breedBees(TargetTraits)
 		end
 	end
-	print(i)
+	io.write(i..', ')
+	io.flush()
 	if verbose then FakeComponent.printInventory(Config.Output, TargetTraits)end
 	--print('Target Traits were A='..FakeComponent.table_to_string(TargetTraits.A)..' and B='..FakeComponent.table_to_string(TargetTraits.B))
 	return i

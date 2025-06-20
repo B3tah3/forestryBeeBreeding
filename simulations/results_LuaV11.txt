@@ -1,0 +1,311 @@
+Genes: 1 / 1 | Fertility: 4
+Average: 10.61, Median: 9
+
+
+Genes: 1 / 2 | Fertility: 4
+Average: 11.43, Median: 10
+
+
+Genes: 1 / 3 | Fertility: 4
+Average: 12.84, Median: 11
+
+
+Genes: 1 / 4 | Fertility: 4
+Average: 13.87, Median: 12
+
+
+Genes: 1 / 5 | Fertility: 4
+Average: 14.0, Median: 13
+
+
+Genes: 1 / 6 | Fertility: 4
+Average: 15.57, Median: 14
+
+
+Genes: 1 / 7 | Fertility: 4
+Average: 17.48, Median: 16
+
+
+Genes: 1 / 8 | Fertility: 4
+Average: 16.91, Median: 14
+
+
+Genes: 1 / 9 | Fertility: 4
+Average: 17.75, Median: 15
+
+
+Genes: 1 / 10 | Fertility: 4
+Average: 17.72, Median: 16
+
+
+Genes: 1 / 11 | Fertility: 4
+Average: 18.75, Median: 17
+
+
+Genes: 1 / 12 | Fertility: 4
+Average: 19.36, Median: 17
+
+
+Genes: 2 / 1 | Fertility: 4
+Average: 11.0, Median: 9
+
+
+Genes: 2 / 2 | Fertility: 4
+Average: 15.37, Median: 13
+
+
+Genes: 2 / 3 | Fertility: 4
+Average: 14.79, Median: 13
+
+
+Genes: 2 / 4 | Fertility: 4
+Average: 17.7, Median: 16
+
+
+Genes: 2 / 5 | Fertility: 4
+Average: 17.94, Median: 16
+
+
+Genes: 2 / 6 | Fertility: 4
+Average: 19.95, Median: 18
+
+
+Genes: 2 / 7 | Fertility: 4
+Average: 21.29, Median: 18
+
+
+Genes: 2 / 8 | Fertility: 4
+Average: 21.65, Median: 20
+
+
+Genes: 2 / 9 | Fertility: 4
+Average: 21.92, Median: 19
+
+
+Genes: 2 / 10 | Fertility: 4
+Average: 22.34, Median: 21
+
+
+Genes: 2 / 11 | Fertility: 4
+Average: 23.47, Median: 21
+
+
+Genes: 3 / 1 | Fertility: 4
+Average: 13.11, Median: 11
+
+
+Genes: 3 / 2 | Fertility: 4
+Average: 15.05, Median: 13
+
+
+Genes: 3 / 3 | Fertility: 4
+Average: 22.79, Median: 19
+
+
+Genes: 3 / 4 | Fertility: 4
+Average: 20.02, Median: 18
+
+
+Genes: 3 / 5 | Fertility: 4
+Average: 22.84, Median: 20
+
+
+Genes: 3 / 6 | Fertility: 4
+Average: 24.27, Median: 23
+
+
+Genes: 3 / 7 | Fertility: 4
+Average: 25.85, Median: 23
+
+
+Genes: 3 / 8 | Fertility: 4
+Average: 25.78, Median: 24
+
+
+Genes: 3 / 9 | Fertility: 4
+Average: 29.29, Median: 28
+
+
+Genes: 3 / 10 | Fertility: 4
+Average: 29.24, Median: 26
+
+
+Genes: 4 / 1 | Fertility: 4
+Average: 13.43, Median: 12
+
+
+Genes: 4 / 2 | Fertility: 4
+Average: 17.46, Median: 15
+
+
+Genes: 4 / 3 | Fertility: 4
+Average: 21.07, Median: 19
+
+
+Genes: 4 / 4 | Fertility: 4
+Average: 27.15, Median: 24
+
+
+Genes: 4 / 5 | Fertility: 4
+Average: 25.14, Median: 22
+
+
+Genes: 4 / 6 | Fertility: 4
+Average: 27.7, Median: 25
+
+
+Genes: 4 / 7 | Fertility: 4
+Average: 30.72, Median: 27
+
+
+Genes: 4 / 8 | Fertility: 4
+Average: 31.78, Median: 29
+
+
+Genes: 4 / 9 | Fertility: 4
+Average: 33.46, Median: 31
+
+
+Genes: 5 / 1 | Fertility: 4
+Average: 14.3, Median: 12
+
+
+Genes: 5 / 2 | Fertility: 4
+Average: 17.27, Median: 16
+
+
+Genes: 5 / 3 | Fertility: 4
+Average: 22.79, Median: 19
+
+
+Genes: 5 / 4 | Fertility: 4
+Average: 24.84, Median: 22
+
+
+Genes: 5 / 5 | Fertility: 4
+Average: 34.45, Median: 31
+
+
+Genes: 5 / 6 | Fertility: 4
+Average: 32.23, Median: 30
+
+
+Genes: 5 / 7 | Fertility: 4
+Average: 34.92, Median: 32
+
+
+Genes: 5 / 8 | Fertility: 4
+Average: 36.43, Median: 33
+
+
+Genes: 6 / 1 | Fertility: 4
+Average: 15.37, Median: 14
+
+
+Genes: 6 / 2 | Fertility: 4
+Average: 21.0, Median: 19
+
+
+Genes: 6 / 3 | Fertility: 4
+Average: 24.71, Median: 23
+
+
+Genes: 6 / 4 | Fertility: 4
+Average: 27.6, Median: 25
+
+
+Genes: 6 / 5 | Fertility: 4
+Average: 30.8, Median: 28
+
+
+Genes: 6 / 6 | Fertility: 4
+Average: 42.79, Median: 38
+
+
+Genes: 6 / 7 | Fertility: 4
+Average: 38.5, Median: 36
+
+
+Genes: 7 / 1 | Fertility: 4
+Average: 15.95, Median: 14
+
+
+Genes: 7 / 2 | Fertility: 4
+Average: 21.21, Median: 19
+
+
+Genes: 7 / 3 | Fertility: 4
+Average: 24.55, Median: 23
+
+
+Genes: 7 / 4 | Fertility: 4
+Average: 32.15, Median: 29
+
+
+Genes: 7 / 5 | Fertility: 4
+Average: 35.93, Median: 34
+
+
+Genes: 7 / 6 | Fertility: 4
+Average: 37.05, Median: 35
+
+
+Genes: 8 / 1 | Fertility: 4
+Average: 17.22, Median: 16
+
+
+Genes: 8 / 2 | Fertility: 4
+Average: 21.45, Median: 19
+
+
+Genes: 8 / 3 | Fertility: 4
+Average: 27.34, Median: 26
+
+
+Genes: 8 / 4 | Fertility: 4
+Average: 31.78, Median: 29
+
+
+Genes: 8 / 5 | Fertility: 4
+Average: 36.36, Median: 33
+
+
+Genes: 9 / 1 | Fertility: 4
+Average: 18.82, Median: 18
+
+
+Genes: 9 / 2 | Fertility: 4
+Average: 23.14, Median: 22
+
+
+Genes: 9 / 3 | Fertility: 4
+Average: 29.62, Median: 26
+
+
+Genes: 9 / 4 | Fertility: 4
+Average: 31.73, Median: 29
+
+
+Genes: 10 / 1 | Fertility: 4
+Average: 18.66, Median: 17
+
+
+Genes: 10 / 2 | Fertility: 4
+Average: 23.72, Median: 22
+
+
+Genes: 10 / 3 | Fertility: 4
+Average: 29.13, Median: 27
+
+
+Genes: 11 / 1 | Fertility: 4
+Average: 19.14, Median: 17
+
+
+Genes: 11 / 2 | Fertility: 4
+Average: 24.27, Median: 22
+
+
+Genes: 12 / 1 | Fertility: 4
+Average: 19.97, Median: 18
+

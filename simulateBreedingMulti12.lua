@@ -2,8 +2,10 @@ TargetTraits = require("targetTraits")
 Component = require("fakeComponent")
 Config = require("fakeConfig")
 Io = require("io")
-Verbose = false
-DecisionLogging = false
+Verbose = true
+DecisionLogging = true
+Logfile = io.open('multi11decision.log','a')
+if not Logfile then return end
 function DeepEquals(a, b, visited)
 	if a == b then
 		return true
@@ -67,22 +69,17 @@ end
 	return true
 end--]]
 function IsDroneMissingAllRelevantTargetGenes(drone, princess)
-	local isPrincessMissingAnyBGenes = false
 	--drone is irrelevant if it does not have any genes which the princess is missing
 	for k,v in pairs(TargetTraits.B) do
 		-- is the princess missing a B gene		
 		if not DeepEquals(v, princess.individual.active[k]) or not DeepEquals(v, princess.individual.inactive[k]) then
-			isPrincessMissingAnyBGenes = true
 			--does the drone have a B gene to contribute
 			if DeepEquals(v, drone.individual.active[k]) or DeepEquals(v, drone.individual.inactive[k]) then
 				return false
 			end
 		end
-		--if not DeepEquals(v, princess.individual.active[k]) and not DeepEquals(v, princess.individual.inactive[k]) then
-		--	isPrincessMissingAnyBGenes = true
-		--end
 	end
-	return true --and isPrincessMissingAnyBGenes
+	return true
 end
 --target(B,B,A,A,A)
 --princs(A,A,A,A,A) passes
@@ -186,11 +183,9 @@ function Iterate()
 
 	--log state, later append decision
 	if Verbose then print('Princess has distance='..PrincessDistance..' and gene='..Component.BeeToGeneString(Princess, TargetTraits)) end
-	local logfile = nil
 	if DecisionLogging then
-		logfile = io.open('multi11decision.log','a')
-		if not logfile then return end
-		logfile:write('princess='..Component.BeeToGeneString(Princess, TargetTraits)..'\n')
+		
+		Logfile:write('princess='..Component.BeeToGeneString(Princess, TargetTraits)..'\n')
 	end
 	if not IsPrincessWorseThanPure(Princess) then
 		--choose best valid drone from storage chest or fallback input, or default to fallback drone
@@ -211,8 +206,8 @@ function Iterate()
 					
 					local distanceToTarget = MeasureDroneDistanceToTarget(bee)
 					local isDroneRelevant = not IsDroneMissingAllRelevantTargetGenes(bee, Princess) or (distanceToTarget == 0)--and isDroneRelevant
-					if DecisionLogging  then logfile:write('drone='..Component.BeeToGeneString(bee, TargetTraits)..'='..tostring(isDroneRelevant)..'='..tostring(distanceToTarget)..'\n')end
-					if Verbose then print('Drone '..tostring(i+1)..' has distance='..distanceToTarget..' and amount='..tostring(bee.size)..' and gene='..Component.BeeToGeneString(bee, TargetTraits)) end--..' with '..Component.table_to_string(bee)..'\n')
+					if DecisionLogging  then Logfile:write('drone='..Component.BeeToGeneString(bee, TargetTraits)..'='..tostring(isDroneRelevant)..'='..tostring(distanceToTarget)..'\n')end
+					--if Verbose and isDroneRelevant then print('Drone '..tostring(i+1)..' has distance='..distanceToTarget..' and amount='..tostring(bee.size)..' and gene='..Component.BeeToGeneString(bee, TargetTraits)) end--..' with '..Component.table_to_string(bee)..'\n')
 					if isDroneRelevant and (distanceToTarget < BestDistance) then
 						BestDistance = distanceToTarget
 						BestDroneIndex = i
@@ -227,7 +222,7 @@ function Iterate()
 				--move princess and result drone to output
 				Component.transferItem(Config.Storage, Config.Output, 1, PrincessSlot, 1)
 				Component.transferItem(Config.Storage, Config.Output, 1, BestDroneIndex + 1, 2)
-				if DecisionLogging then logfile:flush()logfile:close() end
+				if DecisionLogging then Logfile:flush() end
 				return false
 			end
 		end
@@ -235,8 +230,8 @@ function Iterate()
 			--print("No eligable Drone found. Using Fallback drone")
 			Result = Component.transferItem(Config.Input, Config.Alveary, 1, TargetTraits.ASlot, 2)
 			if DecisionLogging then 
-				logfile:write('chosen='..Component.BeeToGeneString(fallbackDrone, TargetTraits)..'\n\n')
-				logfile:flush()logfile:close()
+				Logfile:write('chosen='..Component.BeeToGeneString(fallbackDrone, TargetTraits)..'\n\n')
+				Logfile:flush()
 			end
 			if Result ~= 1 then
 				print("Ran out of Super Drones. Programm halting.")
@@ -244,10 +239,10 @@ function Iterate()
 			end
 		else
 			--Component.printInventory(Config.Storage)
-			if Verbose then print('Chosen Drone has distance='..BestDistance..' and gene='..Component.BeeToGeneString(Component[Config.Storage][BestDroneIndex], TargetTraits)) end
+			if Verbose then print('Chosen Drone '..tostring(BestDroneIndex+1)..' has distance='..BestDistance..' and gene='..Component.BeeToGeneString(Component[Config.Storage][BestDroneIndex], TargetTraits)) end
 			if DecisionLogging then 
-				logfile:write('chosen='..Component.BeeToGeneString(Component[Config.Storage][BestDroneIndex], TargetTraits)..'\n\n')
-				logfile:flush()logfile:close()
+				Logfile:write('chosen='..Component.BeeToGeneString(Component[Config.Storage][BestDroneIndex], TargetTraits)..'\n\n')
+				Logfile:flush()
 			end
 			Result = Component.transferItem(Config.Storage, Config.Alveary, 1, BestDroneIndex + 1, 2)
 			--print("[DEBUG]:    Moved Drone Dist="..tostring(BestDistance).."", Result, "From Slot", BestDroneIndex + 1)
@@ -261,10 +256,10 @@ function Iterate()
 		--move pure a drone to output chest
 		Result = Component.transferItem(Config.Input, Config.Alveary, 1, TargetTraits.ASlot, 2)
 		if DecisionLogging then 
-			logfile:write('chosen='..Component.BeeToGeneString(fallbackDrone, TargetTraits)..'\n\n')
-			logfile:flush()logfile:close()
+			Logfile:write('chosen='..Component.BeeToGeneString(fallbackDrone, TargetTraits)..'\n\n')
+			Logfile:flush()
 		end
-			--print("[DEBUG]:    Moved Fallback Drone", Result)
+		--print("[DEBUG]:    Moved Fallback Drone", Result)
 		if Result ~= 1 then
 			print("Ran out of Super Drones. Programm halting.")
 			return false
@@ -349,3 +344,4 @@ for i = 0,200 do
 end
 print(occurenceString)
 print('Median= '..tostring(median))
+Logfile:close()

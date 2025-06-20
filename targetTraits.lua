@@ -1,11 +1,17 @@
 IO = require("io")
 TargetTraits = {}
 local verbose = false
-function TargetTraits.QueryTargetStats(InputDrawer)
+function TargetTraits.QueryTargetStats(InputDrawer, retainedGenes, superGenes)
 	--local autoAnswer = {[0]='b','a','a','a','a','a','a','a','a','a','a','a'}
-	local autoAnswer = {[0]='b','b','b','b','a','a','a','a','a','a','a','a'}
+	--local autoAnswer = {[0]='b','b','b','b','a','a','a','a','a','a','a','a'}
 	--local autoAnswer = {[0]='b','a','a'}
-	
+	local autoAnswer = {}
+	for i = 0,retainedGenes-1 do
+		autoAnswer[i] = "b"
+	end
+	for i = retainedGenes,superGenes+retainedGenes-1 do
+		autoAnswer[i] = "a"
+	end
 	
 	local answerCount = 0
 	TargetTraits.A = {}

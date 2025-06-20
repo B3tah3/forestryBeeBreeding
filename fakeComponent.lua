@@ -57,17 +57,10 @@ function FakeComponent.breedBees(targetTraits)
     local child = FakeComponent.createChild(parent1, parent2, names[i], targetTraits)
     FakeComponent[Config.Alveary][3] = child
     FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 4)
-  
   end
   --delete parents
   FakeComponent[Config.Alveary][0] = {}
   FakeComponent[Config.Alveary][1] = {}
-  --move children to storage
-  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 4)
-  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 5)
-  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 6)
-  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 7)
-  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 8)
 end
 function FakeComponent.createChild(parent1, parent2, name, targetTraits)
   local child = {
