@@ -1,8 +1,10 @@
 os = require("os")
 Config = require("fakeConfig")
-math = require('math')
-math.randomseed(os.time())
-math.random(); math.random(); math.random()
+--math = require('math')
+--math.randomseed(os.time())
+--math.random(); math.random(); math.random()
+Random = require("random")
+Random.setSeed(151327368)
 
 FakeComponent = {}
 function FakeComponent.readInventory(side)
@@ -46,25 +48,28 @@ function FakeComponent.TransferItemToFirstFreeSlot(sourceSide, sinkSide, count, 
   end
   return 0
 end
-function FakeComponent.breedBees()
+function FakeComponent.breedBees(targetTraits)
   local alveary = FakeComponent[Config.Alveary]
   local parent1 = alveary[0]
   local parent2 = alveary[1]
   local names = {[1]="Forestry:beePrincessGE",[2]="Forestry:beeDroneGE",[3]="Forestry:beeDroneGE",[4]="Forestry:beeDroneGE",[5]="Forestry:beeDroneGE"}
   for i = 1,5 do
-    local child = FakeComponent.createChild(parent1, parent2, names[i])
-    FakeComponent[Config.Alveary][2+i] = child
+    local child = FakeComponent.createChild(parent1, parent2, names[i], targetTraits)
+    FakeComponent[Config.Alveary][3] = child
+    FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 4)
+  
   end
   --delete parents
   FakeComponent[Config.Alveary][0] = {}
   FakeComponent[Config.Alveary][1] = {}
   --move children to storage
-  FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 4)
-  FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 5)
-  FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 6)
-  FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 7)
+  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 4)
+  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 5)
+  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 6)
+  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 7)
+  --FakeComponent.TransferItemToFirstFreeSlot(Config.Alveary, Config.Storage, 1, 8)
 end
-function FakeComponent.createChild(parent1, parent2, name)
+function FakeComponent.createChild(parent1, parent2, name, targetTraits)
   local child = {
     individual={
       active={effect="forestry.allele.effect.none",territory={9,6,9},species={temperature="Normal",humidity="Damp",name="Clay",uid="gregtech.bee.speciesClay"},flowering=10,lifespan=20,temperatureTolerance="NONE",fertility=2,humidityTolerance="NONE",speed=0.30000001192093,tolerantFlyer=false,flowerProvider="flowersVanilla",caveDwelling=false,nocturnal=false},
@@ -74,10 +79,19 @@ function FakeComponent.createChild(parent1, parent2, name)
     size=1
   }
   for k,v in pairs(parent1.individual.active) do
-    local parent1Genes = {[1]=parent1.individual.active[k], [2]=parent1.individual.inactive[k]}
-    local parent2Genes = {[1]=parent2.individual.active[k], [2]=parent2.individual.inactive[k]}
-    child.individual.active[k] = parent1Genes[math.random(2)]
-    child.individual.inactive[k] = parent2Genes[math.random(2)]
+    --dont call random numbers if the trait is not a target
+    if targetTraits.A[k] == nil and targetTraits.B[k] == nil then
+      child.individual.active[k] = parent1.individual.active[k]
+      child.individual.inactive[k] = parent1.individual.inactive[k]
+    else
+      local parent1Genes = {[1]=parent1.individual.active[k], [2]=parent1.individual.inactive[k]}
+      local parent2Genes = {[1]=parent2.individual.active[k], [2]=parent2.individual.inactive[k]}
+      local r1 = Random.random()
+      local r2 = Random.random()
+      child.individual.active[k] = parent1Genes[r1]
+      child.individual.inactive[k] = parent2Genes[r2]
+      --print(name, r1, r2, tostring(k), Random.getSeed())
+    end
   end
   return child
 end

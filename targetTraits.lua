@@ -4,6 +4,8 @@ local verbose = false
 function TargetTraits.QueryTargetStats(InputDrawer)
 	--local autoAnswer = {[0]='b','a','a','a','a','a','a','a','a','a','a','a'}
 	local autoAnswer = {[0]='b','b','b','b','a','a','a','a','a','a','a','a'}
+	--local autoAnswer = {[0]='b','a','a'}
+	
 	
 	local answerCount = 0
 	TargetTraits.A = {}

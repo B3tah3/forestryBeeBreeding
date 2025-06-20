@@ -61,3 +61,11 @@ Gene Individual Data Format
     tolerantFlyer
     flowerProvider
     caveDwelling
+
+
+Next gen choosing algorithm
+1. any impure A gene on princess requires the chosen drone to have it as double A pure gene
+    last resort can always be pure A starter drones
+2. any established (BB) B gene on princess prioritizes drones by highest b completeness score
+3. for tiebreakers, highest A completeness score decides
+4. choose first best, not random
